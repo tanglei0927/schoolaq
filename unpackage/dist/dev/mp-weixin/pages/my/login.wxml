@@ -1,0 +1,1 @@
+<view class="login_page data-v-6ae26f3f"><view class="_h3 data-v-6ae26f3f">安全员登录</view><view class="inputbox data-v-6ae26f3f"><input type="text" value="请输入账号" class="data-v-6ae26f3f"/></view><view class="inputbox data-v-6ae26f3f"><input type="text" value="请输入密码" class="data-v-6ae26f3f"/></view><button type="primary" class="data-v-6ae26f3f">登录</button></view>
