@@ -24,29 +24,29 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.report.data-v-6d111b6e {
+.report.data-v-e9f4bbc4 {
   padding: 0 20rpx;
   background: #fff;
 }
-.report > view.data-v-6d111b6e {
-    padding: 20rpx 0;
-    border-bottom: 1px solid #ccc;
+.report > view.data-v-e9f4bbc4 {
+  padding: 20rpx 0;
+  border-bottom: 1px solid #ccc;
 }
-.report > view Select.data-v-6d111b6e {
-      float: right;
+.report > view Select.data-v-e9f4bbc4 {
+  float: right;
 }
-.report > view ._h4.data-v-6d111b6e {
-      color: #ccc;
-      font-size: 30rpx;
+.report > view ._h4.data-v-e9f4bbc4 {
+  color: #ccc;
+  font-size: 30rpx;
 }
-.report > button.data-v-6d111b6e {
-    width: 100%;
-    margin-top: 40rpx;
+.report > button.data-v-e9f4bbc4 {
+  width: 100%;
+  margin-top: 40rpx;
 }
-button.data-v-6d111b6e {
+button.data-v-e9f4bbc4 {
   background: #FF6C00;
 }
-.shadow.data-v-6d111b6e {
+.shadow.data-v-e9f4bbc4 {
   position: fixed;
   top: 0;
   left: 0;
@@ -56,22 +56,24 @@ button.data-v-6d111b6e {
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000000;
 }
-.shadow .box.data-v-6d111b6e {
-    border-radius: 20rpx;
-    background: #fff;
-    width: 560rpx;
-    margin: auto;
-    margin-top: 200rpx;
-    padding: 40rpx;
-    line-height: 74rpx;
+.shadow .box.data-v-e9f4bbc4 {
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
+  background: #fff;
+  width: 560rpx;
+  margin: auto;
+  margin-top: 200rpx;
+  padding: 40rpx;
+  line-height: 74rpx;
 }
-.shadow .box ._h3.data-v-6d111b6e {
-      text-align: center;
-      font-weight: bold;
-      line-height: 60rpx;
+.shadow .box ._h3.data-v-e9f4bbc4 {
+  text-align: center;
+  font-weight: bold;
+  line-height: 60rpx;
 }
-.shadow .box button.data-v-6d111b6e {
-      margin-top: 30rpx;
-      border-radius: 50rpx;
+.shadow .box button.data-v-e9f4bbc4 {
+  margin-top: 30rpx;
+  -webkit-border-radius: 50rpx;
+          border-radius: 50rpx;
 }
 

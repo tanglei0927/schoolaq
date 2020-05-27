@@ -108,10 +108,27 @@
 		},
 		data(){
 			return{
-				val1:1,
-				
-			}
-			
+				val1:1,		
+				id:null,
+				driverList:[],//司机列表
+			}			
+		},
+		onLoad(e){
+			this.id=e.id
+		},
+		methods:{
+			getDriverList(){
+				// 司机列表
+				this.$http.post("operatorReport/listDriver",{
+					securityId:this.id
+				}).then(res=>{
+					if(res.code==100){
+						this.driverList=res.info
+						
+						
+					}
+				})
+			},
 		}
 	}
 </script>

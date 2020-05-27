@@ -24,51 +24,51 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.list_box.data-v-6cf6780f {
+.list_box.data-v-41a8799a {
   padding: 0 30rpx;
   background: #fff;
   border-bottom: 1px solid #ccc;
 }
-.list_box .box.data-v-6cf6780f {
-    padding: 25rpx 0;
-    border-bottom: 1px solid #ccc;
+.list_box .box.data-v-41a8799a {
+  padding: 25rpx 0;
+  border-bottom: 1px solid #ccc;
 }
-.list_box .box .img.data-v-6cf6780f {
-      float: left;
-      width: 90rpx;
-      margin-right: 20rpx;
-      margin-top: 15rpx;
+.list_box .box .img.data-v-41a8799a {
+  float: left;
+  width: 90rpx;
+  margin-right: 20rpx;
+  margin-top: 15rpx;
 }
-.list_box .box .img image.data-v-6cf6780f {
-        width: 100%;
+.list_box .box .img image.data-v-41a8799a {
+  width: 100%;
 }
-.list_box .box .textbox.data-v-6cf6780f {
-      float: left;
-      width: 580rpx;
-      font-size: 28rpx;
-      line-height: 60rpx;
+.list_box .box .textbox.data-v-41a8799a {
+  float: left;
+  width: 580rpx;
+  font-size: 28rpx;
+  line-height: 60rpx;
 }
-.list_box .box .textbox ._h3.data-v-6cf6780f {
-        width: 100%;
+.list_box .box .textbox ._h3.data-v-41a8799a {
+  width: 100%;
 }
-.list_box .box .textbox ._h3 .times.data-v-6cf6780f {
-          float: right;
-          font-weight: normal;
-          color: #ccc;
+.list_box .box .textbox ._h3 .times.data-v-41a8799a {
+  float: right;
+  font-weight: normal;
+  color: #ccc;
 }
-.list_box .box .textbox ._h3 image.data-v-6cf6780f {
-          width: 80rpx;
-          margin-right: 20rpx;
+.list_box .box .textbox ._h3 image.data-v-41a8799a {
+  width: 80rpx;
+  margin-right: 20rpx;
 }
-.list_box .box .textbox > text.data-v-6cf6780f {
-        display: inline-block;
-        width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: #646464;
+.list_box .box .textbox > text.data-v-41a8799a {
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #646464;
 }
-.list_box .box.data-v-6cf6780f:last-child {
-    border: 0;
+.list_box .box.data-v-41a8799a:last-child {
+  border: 0;
 }
 

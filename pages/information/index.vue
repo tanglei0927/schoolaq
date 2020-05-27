@@ -3,51 +3,28 @@
 		<view class="titles cl">
 			<view class="tous cl" @click="goTs()">
 				<image src="../../static/img/xxzx_004.png" mode="widthFix"></image>
-				<text>5未处理</text>
+				<text>{{tsCount}}未处理</text>
 			</view>
 			<view class="qinj cl" @click="goLeave()">
 				<image src="../../static/img/xxzx_005.png" mode="widthFix"></image>
-				<text>5未处理</text>
+				<text>{{qjCount}}未处理</text>
 			</view>
 		</view>
 		<!-- 通知列表 -->
 		<view class="list_box footerbox"v-if="!isNone">
-			<view class="box cl">
+			<view class="box cl" v-for="(item,index) in Msglist">
 				<view class="img">
-					<image src="../../static/img/xxzx_009.png" mode="widthFix"></image>
+					<image :src="iconList[(item.type*1)-1]" mode="widthFix"></image>
 				</view>
 				<view class="textbox">
 					<h3>
-						<text>投诉通知</text>
-						<text>2019年8月21日</text>
+						<text>{{item.type==1?'家长投诉':(item.type==2?'请假':'回复')}}</text>
+						<text>{{item.createTime}}</text>
 					</h3>
-					<text>报名已提</text>
+					<text>{{item.content}}</text>
 				</view>
 			</view>
-			<view class="box cl">
-				<view class="img">
-					<image src="../../static/img/xxzx_002.png" mode="widthFix"></image>
-				</view>
-				<view class="textbox">
-					<h3>
-						<text>学校通知</text>
-						<text>2019年8月21日</text>
-					</h3>
-					<text>报名已提</text>
-				</view>
-			</view>
-			<view class="box cl">
-				<view class="img">
-					<image src="../../static/img/xxzx_003.png" mode="widthFix"></image>
-				</view>
-				<view class="textbox">
-					<h3>
-						<text>投诉通知</text>
-						<text>2019年8月21日</text>
-					</h3>
-					<text>报名已提</text>
-				</view>
-			</view>
+			
 		</view>
 		
 		<!-- 悬浮框 -->
@@ -60,6 +37,7 @@
 			<image src="../../static/img/xxzx_008.png" mode="widthFix"></image>
 			<h3>无通知信息</h3>
 		</view>
+		<image src="" mode=""></image>
 	</view>
 </template>
 
@@ -68,7 +46,24 @@
 		data(){
 			return{
 				isNone:false,//无通知消息：true
+				iconList:[
+					'../../static/img/xxzx_002.png',//投诉  1
+					'../../static/img/xxzx_012.png',//请假  2
+					'../../static/img/xxzx_009.png',//回复  3
+					// '../../static/img/xxzx_003.png',//学校  2
+				],
+				userInfo:{},
+				Msglist:[],
+				qjCount:0,
+				tsCount:0,
 			}
+		},
+		onShow(){
+			let userInfo=uni.getStorageSync("userInfo")
+			if(userInfo){
+				this.userInfo=JSON.parse(userInfo)
+			}
+			this.getMsgList()
 		},
 		methods:{
 			goLeave(){
@@ -87,6 +82,30 @@
 				//投诉
 				uni.navigateTo({
 					url:"../../components/complaint/index"
+				})
+			},
+			getMsgList(){
+				this.$http.post("sMessage/list",{
+					id:this.userInfo.id,
+					type:''
+				}).then(res=>{
+					if(res.code==100){
+						// this.Msglist=res.info
+						let list=res.info
+						this.qjCount=0
+						this.tsCount=0
+						// state:0未读，1已读  2：已回复
+						list.forEach((item,index)=>{
+							item.createTime=this.$untils.getDate(item.createTime)
+							if(item.type==1&&item.state==0){
+								this.tsCount++
+							}
+							if(item.type==2&&item.state==0){
+								this.qjCount++
+							}
+						})
+						this.Msglist=list
+					}
 				})
 			},
 		}

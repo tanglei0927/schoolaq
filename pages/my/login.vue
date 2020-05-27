@@ -2,18 +2,57 @@
 	<view class="login_page">
 		<h3>安全员登录</h3>
 		<view class="inputbox">
-			<input type="text" value="请输入账号" />
+			<input type="text"v-model="form.account"  placeholder="请输入账号" />
 		</view>
 		<view class="inputbox">
-			<input type="text" value="请输入密码" />
+			<input type="text" v-model="form.password" placeholder="请输入密码" />
 		</view>
-		<button type="primary">登录</button>
+		<button type="primary" @click="login()">登录</button>
 	</view>
 </template>
 
 <script>
 	export default {
-		
+		data(){
+			return{
+				form:{
+					account:"",
+					password:""
+				}
+			}
+		},
+		methods:{
+			login(){
+				if(!this.form.account){
+					uni.showToast({
+						icon:"none",
+						title:"请输入账号"
+					})
+				}else if(!this.form.password){
+					uni.showToast({
+						icon:"none",
+						title:"请输入密码"
+					})
+				}else{
+					this.$http.post("securityUser/login",this.form).then(res=>{
+						if(res.code==100){
+							uni.showToast({
+								icon:"success",
+								title:"登录成功"
+							})
+							let userInfo=res.info
+							userInfo=JSON.stringify(userInfo)
+							uni.setStorageSync("userInfo",userInfo)
+							setTimeout(()=>{
+								uni.switchTab({
+									url:"../index/index"
+								})
+							},2000)
+						}
+					})
+				}
+			},
+		}
 	}
 </script>
 
@@ -24,7 +63,7 @@
 	// background: #F0AD4E;
 	h3{
 		padding: 50rpx 20rpx 20rpx 20rpx;
-		background: linear-gradient(#FF6C00, #F0AD4E);
+		background: linear-gradient(#FF6C00, #fff);
 		font-size: 50rpx;
 	}
 	.inputbox{

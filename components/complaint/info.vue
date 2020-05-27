@@ -3,9 +3,9 @@
 		<view class="title">
 			投诉信息
 		</view>
-		<text>2020年1月13日 19:46</text>
+		<text>{{details.createTime}}</text>
 		<view class="msg">
-			您管理的线路xxx(起点)--yy(终点)，有xxx(孩子名)请假，共提交请假z天，请假y车次！该车次未来上车人数为gg（实际减1）,此信息不作为最终确定人数。
+			{{details.content}}
 		</view>
 		<view class="box">
 			<view class="tit">
@@ -27,7 +27,29 @@
 
 <script>
 	export default{
-		
+		data(){
+			return{
+				id:null,
+				details:{}
+			}
+		},
+		onLoad(e){
+			this.id=e.id
+		},
+		onShow(){
+			this.getMsgDetails()
+		},
+		methods:{
+			getMsgDetails(){
+				this.$http.post("sMessage/getComplaintDetail",{
+					id:this.id
+				}).then(res=>{
+					if(res.code==100){
+						this.details=res.info
+					}
+				})
+			}
+		}
 	}
 </script>
 
@@ -74,6 +96,7 @@
 		margin-top: 30rpx;
 		// padding: 20rpx;
 		textarea{
+			width: 100%;
 			padding: 20rpx;
 			border: 1px solid #ccc;
 			background: #eee;

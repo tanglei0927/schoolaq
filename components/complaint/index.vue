@@ -1,66 +1,68 @@
 <template>
 	<view class="">
 		<view class="list_box">
-			<view class="box cl" @click="goDetails()">
+			<view class="box cl" v-for="(item,index) in Msglist" @click="goDetails(item.id)">
 				<view class="img">
 					<image src="../../static/img/xxzx_009.png" mode="widthFix"></image>
 				</view>
 				<view class="textbox">
 					<h3>
 						<view class="statusbox">
-							<image src="../../static/img/weide001.png" mode="widthFix"></image>
-							<text>未读</text>
+							<image :src="iconList[item.state]" mode="widthFix"></image>
+							<text>{{item.state==0?'未读':(item.state==1?'未回复':'已回复')}}</text>
 						</view>
 						<text>投诉信息</text>
-						<text class="times">2019年8月21日</text>
+						<text class="times">{{item.createTime}}</text>
 					</h3>
-					<text>报名已提交弟弟顶顶顶顶顶订单顶顶顶顶的点点滴滴</text>
+					<text>{{item.content}}</text>
 				</view>
 			</view>
-			<view class="box cl">
-				<view class="img">
-					<image src="../../static/img/xxzx_009.png" mode="widthFix"></image>
-				</view>
-				<view class="textbox">
-					<h3>
-						<view class="statusbox">
-							<image src="../../static/img/xxzx_006.png" mode="widthFix"></image>
-							<text>未回复</text>
-						</view>
-						<text>投诉信息</text>
-						<text class="times">2019年8月21日</text>
-					</h3>
-					<text>报名已提交弟弟顶顶顶顶顶订单顶顶顶顶的点点滴滴</text>
-				</view>
-			</view>
-			<view class="box cl">
-				<view class="img">
-					<image src="../../static/img/xxzx_009.png" mode="widthFix"></image>
-				</view>
-				<view class="textbox">
-					<h3>
-						<view class="statusbox">
-							<image src="../../static/img/xxzx_007.png" mode="widthFix"></image>
-							<text>已回复</text>
-						</view>
-						<text>投诉信息</text>
-						<text class="times">2019年8月21日</text>
-					</h3>
-					<text>报名已提交弟弟顶顶顶顶顶订单顶顶顶顶的点点滴滴</text>
-				</view>
-			</view>
+		
 		</view>
 	</view>
 </template>
 
 <script>
 	export default{
-		methods:{
-			goDetails(){
-				uni.navigateTo({
-					url:"./info"
-				})
+		data(){
+			return{
+				Msglist:[],
+				userInfo:{},
+				// state:0未读，1已读  2：已回复
+				iconList:[
+					'../../static/img/weide001.png',//未读
+					'../../static/img/xxzx_006.png',//已读，未回复
+					'../../static/img/xxzx_009.png',//已回复
+				]
 			}
+		},
+		onShow(){
+			let userInfo=uni.getStorageSync("userInfo")
+			if(userInfo){
+				this.userInfo=JSON.parse(userInfo)
+			}
+			this.getMsgList()
+		},
+		methods:{
+			goDetails(id){
+				uni.navigateTo({
+					url:"./info?id="+id
+				})
+			},
+			getMsgList(){
+				this.$http.post("sMessage/list",{
+					id:this.userInfo.id,
+					type:1
+				}).then(res=>{
+					if(res.code==100){
+						let list=res.info
+						list.forEach((item,index)=>{
+							item.createTime=this.$untils.getDate(item.createTime)
+						})
+						this.Msglist=list
+					}
+				})
+			},
 		}
 	}
 </script>
@@ -128,7 +130,8 @@
 				left: 0;
 				width: 80rpx;
 				text-align: center;
-				font-size: 8px;
+				font-size: 10px;
+				line-height: 50rpx;
 				// padding:  0 10rpx;
 			}
 		}

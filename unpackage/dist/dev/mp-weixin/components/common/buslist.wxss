@@ -24,61 +24,63 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.box.data-v-334ba875 {
+.box.data-v-6be591ec {
   width: 750rpx;
   overflow-y: hidden;
   overflow-x: scroll;
 }
-.grouplist.data-v-334ba875 {
+.grouplist.data-v-6be591ec {
   margin-top: 30rpx;
 }
-.grouplist .li.data-v-334ba875:first-child {
-    width: 30rpx;
-    padding-left: 15rpx;
+.grouplist .li.data-v-6be591ec:first-child {
+  width: 30rpx;
+  padding-left: 15rpx;
 }
-.grouplist .li:first-child .li.data-v-334ba875:last-child {
-      padding-right: 15rpx;
+.grouplist .li:first-child .li.data-v-6be591ec:last-child {
+  padding-right: 15rpx;
 }
-.grouplist .li.data-v-334ba875 {
-    float: left;
-    position: relative;
-    border-top: 30rpx solid #007AFF;
-    width: 150rpx;
-    height: 500rpx;
+.grouplist .li.data-v-6be591ec {
+  float: left;
+  position: relative;
+  border-top: 30rpx solid #007AFF;
+  width: 150rpx;
+  height: 500rpx;
 }
-.grouplist .li > view.data-v-334ba875 {
-      position: absolute;
-      right: 15rpx;
-      top: -38rpx;
-      width: 20rpx;
-      z-index: 1000;
+.grouplist .li > view.data-v-6be591ec {
+  position: absolute;
+  right: 15rpx;
+  top: -38rpx;
+  width: 20rpx;
+  z-index: 1000;
 }
-.grouplist .li > view ._i.data-v-334ba875 {
-        display: inline-block;
-        width: 30rpx;
-        height: 30rpx;
-        border-radius: 50%;
-        border: 1px solid #ccc;
-        background: #fff;
+.grouplist .li > view ._i.data-v-6be591ec {
+  display: inline-block;
+  width: 30rpx;
+  height: 30rpx;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  border: 1px solid #ccc;
+  background: #fff;
 }
-.grouplist .li > view .check.data-v-334ba875 {
-        border-color: #FF6C00;
-        text-align: center;
-        position: relative;
+.grouplist .li > view .check.data-v-6be591ec {
+  border-color: #FF6C00;
+  text-align: center;
+  position: relative;
 }
-.grouplist .li > view .check ._em.data-v-334ba875 {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          margin: auto;
-          height: 20rpx;
-          width: 20rpx;
-          background: #FF6C00;
+.grouplist .li > view .check ._em.data-v-6be591ec {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 20rpx;
+  width: 20rpx;
+  background: #FF6C00;
+  -webkit-border-radius: 50%;
           border-radius: 50%;
 }
-.grouplist .li > view .check + text.data-v-334ba875 {
-        color: #FF6C00;
+.grouplist .li > view .check + text.data-v-6be591ec {
+  color: #FF6C00;
 }
 

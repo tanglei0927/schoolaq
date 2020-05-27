@@ -24,109 +24,113 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.carbox.data-v-2722b955 {
+.carbox.data-v-6892fd60 {
   width: 700rpx;
   margin: 20rpx auto;
   background: #fff;
-  border-radius: 20rpx;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
   border: 1px solid #ccc;
 }
-.carbox .tits.data-v-2722b955 {
-    padding: 30rpx;
+.carbox .tits.data-v-6892fd60 {
+  padding: 30rpx;
 }
-.carbox .tits text.data-v-2722b955:nth-child(1) {
-      float: left;
-      padding: 0 22rpx;
-      border-left: 2px solid #ec6400;
-      font-size: 30rpx;
-      font-weight: bold;
+.carbox .tits text.data-v-6892fd60:nth-child(1) {
+  float: left;
+  padding: 0 22rpx;
+  border-left: 2px solid #ec6400;
+  font-size: 30rpx;
+  font-weight: bold;
 }
-.carbox .tits text.data-v-2722b955:nth-child(2) {
-      float: right;
-      padding: 0 22rpx;
-      background: #f0f0f0;
-      border-radius: 20rpx;
-      font-size: 28rpx;
+.carbox .tits text.data-v-6892fd60:nth-child(2) {
+  float: right;
+  padding: 0 22rpx;
+  background: #f0f0f0;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
+  font-size: 28rpx;
 }
-.carbox .status.data-v-2722b955 {
-    position: relative;
-    margin-bottom: 30rpx;
+.carbox .status.data-v-6892fd60 {
+  position: relative;
+  margin-bottom: 30rpx;
 }
-.carbox .status .bjimg.data-v-2722b955 {
-      width: 100%;
+.carbox .status .bjimg.data-v-6892fd60 {
+  width: 100%;
 }
-.carbox .car.data-v-2722b955 {
-    width: 150rpx;
-    position: absolute;
-    top: -15rpx;
-    left: 0;
+.carbox .car.data-v-6892fd60 {
+  width: 150rpx;
+  position: absolute;
+  top: -15rpx;
+  left: 0;
 }
-.carbox .businfo > view.data-v-2722b955 {
-    float: left;
-    width: 50%;
-    font-size: 28rpx;
-    margin: 10rpx 0;
-    padding: 0 29rpx;
-    box-sizing: border-box;
+.carbox .businfo > view.data-v-6892fd60 {
+  float: left;
+  width: 50%;
+  font-size: 28rpx;
+  margin: 10rpx 0;
+  padding: 0 29rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
-.carbox .businfo > view image.data-v-2722b955 {
-      width: 80rpx;
-      margin-right: 20rpx;
+.carbox .businfo > view image.data-v-6892fd60 {
+  width: 80rpx;
+  margin-right: 20rpx;
 }
-.carbox .infos.data-v-2722b955 {
-    padding: 20rpx;
-    border-top: 1px solid #ccc;
-    line-height: 80rpx;
+.carbox .infos.data-v-6892fd60 {
+  padding: 20rpx;
+  border-top: 1px solid #ccc;
+  line-height: 80rpx;
 }
-.carbox .infos text.data-v-2722b955 {
-      float: left;
+.carbox .infos text.data-v-6892fd60 {
+  float: left;
 }
-.carbox .infos switch.data-v-2722b955 {
-      float: left;
-      margin-left: 40rpx;
+.carbox .infos switch.data-v-6892fd60 {
+  float: left;
+  margin-left: 40rpx;
 }
-.carbox .infos text.data-v-2722b955:nth-child(2) {
-      float: right;
+.carbox .infos text.data-v-6892fd60:nth-child(2) {
+  float: right;
 }
-.txbox.data-v-2722b955 {
+.txbox.data-v-6892fd60 {
   padding: 20rpx 10rpx;
   background: #fff;
   padding-bottom: 100rpx;
 }
-.txbox .tit.data-v-2722b955 {
-    margin-left: 20rpx;
+.txbox .tit.data-v-6892fd60 {
+  margin-left: 20rpx;
 }
-.txbox .tx.data-v-2722b955 {
-    margin: 20rpx;
-    width: 110rpx;
-    height: 110rpx;
-    border-radius: 50%;
-    overflow: hidden;
-    float: left;
-    position: relative;
+.txbox .tx.data-v-6892fd60 {
+  margin: 20rpx;
+  width: 110rpx;
+  height: 110rpx;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  overflow: hidden;
+  float: left;
+  position: relative;
 }
-.txbox .tx image.data-v-2722b955 {
-      width: 100%;
+.txbox .tx image.data-v-6892fd60 {
+  width: 100%;
 }
-.txbox .tx view.data-v-2722b955 {
-      background: rgba(255, 255, 255, 0.8);
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      margin: auto;
+.txbox .tx view.data-v-6892fd60 {
+  background: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
 }
-> button.data-v-2722b955 {
+> button.data-v-6892fd60 {
   position: fixed;
   width: 100%;
   left: 0;
   bottom: 0;
 }
-button.data-v-2722b955 {
+button.data-v-6892fd60 {
   background: #FF6C00;
 }
-.shadow.data-v-2722b955 {
+.shadow.data-v-6892fd60 {
   position: fixed;
   top: 0;
   left: 0;
@@ -136,36 +140,41 @@ button.data-v-2722b955 {
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000000;
 }
-.shadow .box.data-v-2722b955 {
-    border-radius: 20rpx;
-    background: #fff;
-    width: 560rpx;
-    margin: auto;
-    margin-top: 100rpx;
-    padding: 40rpx;
-    line-height: 60rpx;
+.shadow .box.data-v-6892fd60 {
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
+  background: #fff;
+  width: 560rpx;
+  margin: auto;
+  margin-top: 100rpx;
+  padding: 40rpx;
+  line-height: 60rpx;
 }
-.shadow .box .tx.data-v-2722b955 {
-      width: 126rpx;
-      height: 126rpx;
-      margin: auto;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-bottom: 30rpx;
+.shadow .box .tx.data-v-6892fd60 {
+  width: 126rpx;
+  height: 126rpx;
+  margin: auto;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 30rpx;
 }
-.shadow .box image.data-v-2722b955 {
-      width: 100%;
+.shadow .box image.data-v-6892fd60 {
+  width: 100%;
 }
-.shadow .box button.data-v-2722b955 {
-      margin-top: 30rpx;
-      border-radius: 50rpx;
+.shadow .box button.data-v-6892fd60 {
+  margin-top: 30rpx;
+  -webkit-border-radius: 50rpx;
+          border-radius: 50rpx;
 }
-.shadow .box textarea.data-v-2722b955 {
-      background: #ccc;
-      height: 200rpx;
-      width: 100%;
-      padding: 20rpx;
-      box-sizing: border-box;
-      border-radius: 20rpx;
+.shadow .box textarea.data-v-6892fd60 {
+  background: #ccc;
+  height: 200rpx;
+  width: 100%;
+  padding: 20rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
 }
 

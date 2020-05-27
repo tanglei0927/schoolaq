@@ -24,36 +24,38 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.userinfopage.data-v-7245e982 {
+.userinfopage.data-v-33d41957 {
   padding: 0 20rpx;
   background: #fff;
   padding-bottom: 120rpx;
 }
-.userinfopage > view.data-v-7245e982 {
-    padding: 40rpx 0;
-    border-bottom: 1px solid #ccc;
+.userinfopage > view.data-v-33d41957 {
+  padding: 40rpx 0;
+  border-bottom: 1px solid #ccc;
 }
-.userinfopage > view text.data-v-7245e982:first-child {
-      float: left;
-      color: #ccc;
-      width: 220rpx;
+.userinfopage > view text.data-v-33d41957:first-child {
+  float: left;
+  color: #ccc;
+  width: 220rpx;
 }
-.userinfopage > view .txt.data-v-7245e982 {
-      line-height: 125rpx;
+.userinfopage > view .txt.data-v-33d41957 {
+  line-height: 125rpx;
 }
-.userinfopage > view .touxiang.data-v-7245e982 {
-      float: left;
-      width: 125rpx;
-      height: 125rpx;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid #fff;
-      box-shadow: 0px 0px 10px 3px #ccc;
+.userinfopage > view .touxiang.data-v-33d41957 {
+  float: left;
+  width: 125rpx;
+  height: 125rpx;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #fff;
+  -webkit-box-shadow: 0px 0px 10px 3px #ccc;
+          box-shadow: 0px 0px 10px 3px #ccc;
 }
-.userinfopage > view .touxiang image.data-v-7245e982 {
-        width: 100%;
+.userinfopage > view .touxiang image.data-v-33d41957 {
+  width: 100%;
 }
-button.data-v-7245e982 {
+button.data-v-33d41957 {
   background: #FF6C00;
   position: fixed;
   bottom: 0;

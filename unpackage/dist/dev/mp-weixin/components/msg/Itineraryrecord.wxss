@@ -24,57 +24,61 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.jilu.data-v-40487c03 {
+.jilu.data-v-0891c28e {
   padding: 20rpx;
   position: relative;
   padding-bottom: 100rpx;
 }
-.jilu ._h3.data-v-40487c03 {
-    line-height: 100rpx;
+.jilu ._h3.data-v-0891c28e {
+  line-height: 100rpx;
 }
-.jilu .box.data-v-40487c03 {
-    background: #fff;
-    padding: 20rpx 0;
-    border-radius: 10rpx;
-    border: 1px solid #ccc;
-    margin-bottom: 30rpx;
-    position: relative;
-    font-size: 30rpx;
+.jilu .box.data-v-0891c28e {
+  background: #fff;
+  padding: 20rpx 0;
+  -webkit-border-radius: 10rpx;
+          border-radius: 10rpx;
+  border: 1px solid #ccc;
+  margin-bottom: 30rpx;
+  position: relative;
+  font-size: 30rpx;
 }
-.jilu .box .tit.data-v-40487c03 {
-      margin-left: 20rpx;
+.jilu .box .tit.data-v-0891c28e {
+  margin-left: 20rpx;
 }
-.jilu .box .times.data-v-40487c03 {
-      position: absolute;
-      right: 20rpx;
-      top: 20rpx;
-      background: #eee;
-      padding: 5rpx 0rpx;
-      border-radius: 30rpx;
+.jilu .box .times.data-v-0891c28e {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  background: #eee;
+  padding: 5rpx 0rpx;
+  -webkit-border-radius: 30rpx;
+          border-radius: 30rpx;
 }
-.jilu .box .times text.data-v-40487c03 {
-        margin: 0 20rpx;
+.jilu .box .times text.data-v-0891c28e {
+  margin: 0 20rpx;
 }
-.jilu .box > image.data-v-40487c03 {
-      width: 100%;
+.jilu .box > image.data-v-0891c28e {
+  width: 100%;
 }
-.jilu button.data-v-40487c03 {
-    background: #FF6C00;
-    border-radius: 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+.jilu button.data-v-0891c28e {
+  background: #FF6C00;
+  -webkit-border-radius: 0;
+          border-radius: 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
-.businfo > view.data-v-40487c03 {
+.businfo > view.data-v-0891c28e {
   float: left;
   width: 50%;
   font-size: 28rpx;
   margin: 10rpx 0;
   padding: 0 29rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
-.businfo > view image.data-v-40487c03 {
-    width: 80rpx;
-    margin-right: 20rpx;
+.businfo > view image.data-v-0891c28e {
+  width: 80rpx;
+  margin-right: 20rpx;
 }
 
