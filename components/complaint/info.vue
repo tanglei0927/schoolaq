@@ -12,16 +12,18 @@
 				投诉人信息
 			</view>
 			<view class="">
-				光谷第二小学，李小彭，线路1
+				{{details.grade?details.grade+"年级":''}}{{details.clazz?details.clazz+'班，':''}}
+				{{details.name?details.name+'，':''}}{{details.lineName?details.lineName:''}}
 			</view>
 		</view>
 		<view class="box">
 			<view class="tit">
-				投诉回复
+				投诉回复 
+				<text v-if="details.newsVoReply.examine">{{details.newsVoReply.examine==0?'审核不通过':(details.newsVoReply.examine==1?'审核通过':'审核中')}}</text>
 			</view>
-			<textarea value="" placeholder="请输入投诉回复内容" />
+			<textarea value="" v-model="content" placeholder="请输入投诉回复内容" />
 		</view>
-		<button>回复</button>
+		<button @click="reply()">回复</button>
 	</view>
 </template>
 
@@ -30,7 +32,8 @@
 		data(){
 			return{
 				id:null,
-				details:{}
+				details:{},
+				content:""
 			}
 		},
 		onLoad(e){
@@ -46,8 +49,48 @@
 				}).then(res=>{
 					if(res.code==100){
 						this.details=res.info
+						if(this.details.newsVoReply){
+							this.content=this.details.newsVoReply.content
+						}else{
+							this.content=""
+						}
 					}
 				})
+			},
+			reply(){
+				let url=""
+				let data={}
+				if(this.details.state==1||this.details.state==0){
+					// 回复
+					url="sMessage/addReply"
+				}else{
+					// 修改回复的内容
+					url="sMessage/updateReply"
+					data.id=this.details.newsVoReply.id
+				}
+				data.replyId=this.details.id			
+				data.content=this.content
+				if(data.content){						
+					this.$http.post(url,data).then(res=>{
+						if(res.code==100){
+							uni.showToast({
+								icon:"success",
+								title:"回复成功"
+							})
+							this.getMsgDetails()
+						}else{
+							uni.showToast({
+								icon:"none",
+								title:res.msg
+							})
+						}
+					})				
+				}else{
+					uni.showToast({
+						icon:"none",
+						title:'请输入回复内容！'
+					})
+				}
 			}
 		}
 	}

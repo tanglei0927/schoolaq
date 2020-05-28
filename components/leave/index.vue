@@ -36,9 +36,9 @@
 			this.getMsgList()
 		},
 		methods:{
-			goDetails(){
+			goDetails(id){
 				uni.navigateTo({
-					url:"./info"
+					url:"./info?id="+id
 				})
 			},
 			getMsgList(){

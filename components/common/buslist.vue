@@ -51,7 +51,7 @@
 		.li{
 			float: left;
 			position: relative;
-			border-top: 30rpx solid #007AFF;
+			border-top: 30rpx solid #75dafb;
 			width: 150rpx;
 			height: 500rpx;
 			>view{

@@ -12,7 +12,7 @@
 		</view>
 		<!-- 通知列表 -->
 		<view class="list_box footerbox"v-if="!isNone">
-			<view class="box cl" v-for="(item,index) in Msglist">
+			<view class="box cl" v-for="(item,index) in Msglist" @click="msgDetial(item)">
 				<view class="img">
 					<image :src="iconList[(item.type*1)-1]" mode="widthFix"></image>
 				</view>
@@ -75,7 +75,7 @@
 			goGroup(){
 				//群发
 				uni.navigateTo({
-					url:"../../components/msg/groupsend"
+					url:"../../components/msg/groupsend?id="+this.userInfo.id
 				})
 			},
 			goTs(){
@@ -107,6 +107,18 @@
 						this.Msglist=list
 					}
 				})
+			},
+			msgDetial(item){
+				//查看信息详情
+				if(item.type==1){
+					uni.navigateTo({
+						url:"../../components/complaint/info?id="+item.id
+					})
+				}else{
+					uni.navigateTo({
+						url:"../../components/leave/info?id="+item.id
+					})
+				}
 			},
 		}
 	}
