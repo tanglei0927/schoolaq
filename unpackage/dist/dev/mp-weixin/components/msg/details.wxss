@@ -24,72 +24,56 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.jilu.data-v-0891c28e {
-  padding: 20rpx;
-  position: relative;
-  padding-bottom: 100rpx;
-}
-.jilu ._h3.data-v-0891c28e {
-  line-height: 100rpx;
-}
-.jilu .box.data-v-0891c28e {
+.report.data-v-ec910a58 {
+  padding: 0 20rpx;
   background: #fff;
+}
+.report > view.data-v-ec910a58 {
   padding: 20rpx 0;
-  -webkit-border-radius: 10rpx;
-          border-radius: 10rpx;
-  border: 1px solid #ccc;
-  margin-bottom: 30rpx;
-  position: relative;
+  border-bottom: 1px solid #ccc;
+}
+.report > view Select.data-v-ec910a58 {
+  float: right;
+}
+.report > view ._h4.data-v-ec910a58 {
+  color: #ccc;
   font-size: 30rpx;
 }
-.jilu .box .tit.data-v-0891c28e {
-  margin-left: 20rpx;
-}
-.jilu .box .times.data-v-0891c28e {
-  position: absolute;
-  right: 20rpx;
-  top: 20rpx;
-  background: #eee;
-  padding: 5rpx 0rpx;
-  -webkit-border-radius: 30rpx;
-          border-radius: 30rpx;
-}
-.jilu .box .times text.data-v-0891c28e {
-  margin: 0 20rpx;
-}
-.jilu .box > image.data-v-0891c28e {
+.report > button.data-v-ec910a58 {
   width: 100%;
+  margin-top: 40rpx;
 }
-.jilu button.data-v-0891c28e {
+button.data-v-ec910a58 {
   background: #FF6C00;
-  -webkit-border-radius: 0;
-          border-radius: 0;
+}
+.shadow.data-v-ec910a58 {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
-  width: 100%;
-}
-.businfo > view.data-v-0891c28e {
-  float: left;
-  width: 50%;
-  font-size: 28rpx;
-  margin: 10rpx 0;
-  padding: 0 29rpx;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-.businfo > view image.data-v-0891c28e {
-  width: 80rpx;
-  margin-right: 20rpx;
-}
-.nonebox.data-v-0891c28e {
+  right: 0;
+  bottom: 0;
   margin: auto;
-  padding: 30rpx 0;
-  text-align: center;
-  color: #ccc;
-  border: 1px solid #eee;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000000;
+}
+.shadow .box.data-v-ec910a58 {
   -webkit-border-radius: 20rpx;
           border-radius: 20rpx;
-  background-color: #fff;
+  background: #fff;
+  width: 560rpx;
+  margin: auto;
+  margin-top: 200rpx;
+  padding: 40rpx;
+  line-height: 74rpx;
+}
+.shadow .box ._h3.data-v-ec910a58 {
+  text-align: center;
+  font-weight: bold;
+  line-height: 60rpx;
+}
+.shadow .box button.data-v-ec910a58 {
+  margin-top: 30rpx;
+  -webkit-border-radius: 50rpx;
+          border-radius: 50rpx;
 }
 

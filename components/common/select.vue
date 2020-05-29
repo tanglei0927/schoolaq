@@ -1,17 +1,18 @@
 <template>
 	<view class="selectbox" @click.stop="checkShow($event)">
-		<text>{{val1==1?'合格':'不合格'}}</text>
+		<text>{{status==0?'合格':'不合格'}}</text>
 		<image src="../../static/img/sj.png" mode="widthFix"></image>
 		<view class="opts" v-show="isShow">
-			<h3 @click="changeVal(1)">合格</h3>
-			<h3 @click="changeVal(0)">不合格</h3>
+			<h3 @click="changeVal(0,index)">合格</h3>
+			<h3 @click="changeVal(1,index)">不合格</h3>
 		</view>
 	</view>
 </template>
 
 <script>
 	export default{
-		data(){
+		props:["status","index"],
+		data(){			
 			return{
 				val1:1,
 				isShow:false
@@ -22,7 +23,11 @@
 				this.isShow=!this.isShow
 			},
 			changeVal(val){
-				this.val1=val
+				// this.val1=val
+				let data={}
+				data.val=val
+				data.index=this.$props.index
+				this.$emit("changeVal",data)
 			}
 		}
 	}

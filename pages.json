@@ -78,6 +78,12 @@
 			"style":{
 				"navigationBarTitleText":"线路详情"
 			}			
+		},
+		{
+			"path":"components/msg/details",
+			"style":{
+				"navigationBarTitleText":"安全报告"
+			}
 		}
 	],
 	"tabBar":{

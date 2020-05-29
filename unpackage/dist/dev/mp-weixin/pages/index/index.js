@@ -370,7 +370,7 @@ var _default =
       if (this.flag) {
         console.log("查看线路安全报告");
         uni.navigateTo({
-          url: "../../components/msg/security?id=" + id });
+          url: "../../components/msg/security?id=" + this.form.id + "&lineId=" + id });
 
       }
 
@@ -380,7 +380,7 @@ var _default =
         case 1:
           // 行程记录
           uni.navigateTo({
-            url: "../../components/msg/Itineraryrecord" });
+            url: "../../components/msg/Itineraryrecord?id=" + this.form.id });
 
           break;
         case 2:

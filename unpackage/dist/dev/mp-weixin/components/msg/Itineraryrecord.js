@@ -130,7 +130,10 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var wCalendar = function wCalendar() {Promise.all(/*! require.ensure | components/common/w-calendar/w-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common/w-calendar/w-calendar")]).then((function () {return resolve(__webpack_require__(/*! ../common/w-calendar/w-calendar.vue */ 125));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var wCalendar = function wCalendar() {Promise.all(/*! require.ensure | components/common/w-calendar/w-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common/w-calendar/w-calendar")]).then((function () {return resolve(__webpack_require__(/*! ../common/w-calendar/w-calendar.vue */ 140));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
 
 
 
@@ -184,18 +187,56 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   data: function data() {
     return {
-      result: {} };
+      result: {},
+      time: null,
+      id: null,
+      recordList: [] };
 
   },
   mounted: function mounted() {
     this.$refs.calendar.show();
   },
+  onLoad: function onLoad(e) {
+    this.id = e.id;
+    console.log(e.id);
+    var date = new Date();
+    var dateStr = "";
+    dateStr = date.getFullYear() + "-";
+    var month = date.getMonth() + 1;
+    month = month < 10 ? "0" + month : month;
+    dateStr += month + "-";
+    var day = date.getDate();
+    day = day < 10 ? "0" + day : day;
+    dateStr += day;
+    this.time = dateStr;
+    this.getRecord();
+  },
   methods: {
     getResult: function getResult(val) {
       console.log(val);
+      this.time = val.fullDate;
+      this.getRecord();
       // this.result=val;
       // this.$refs.calendar.show();
+    },
+    getRecord: function getRecord() {var _this = this;
+      // 获取行程记录
+      this.$http.post("sRidingRecord/list", {
+        securityId: this.id,
+        fromTime: this.time,
+        toTime: this.time }).
+      then(function (res) {
+        if (res.code == 100) {
+          _this.recordList = res.info;
+        }
+      });
+    },
+    lookDetails: function lookDetails(id) {
+      uni.navigateTo({
+        url: "details?id=" + id });
+
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Select = function Select() {__webpack_require__.e(/*! require.ensure | components/common/select */ "components/common/select").then((function () {return resolve(__webpack_require__(/*! ../common/select.vue */ 133));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var Select = function Select() {__webpack_require__.e(/*! require.ensure | components/common/select */ "components/common/select").then((function () {return resolve(__webpack_require__(/*! ../common/select.vue */ 148));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -238,28 +238,103 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   components: {
     Select: Select },
 
-  data: function data() {
+  data: function data() {var _form;
     return {
       val1: 1,
       id: null,
-      driverList: [] //司机列表
-    };
+      driverList: [], //司机列表
+      form: (_form = {
+        securityId: null, //安全员id
+        brake: 0, //刹车情况   0合格  1不合格
+        lamp: 0, //车灯  
+        tire: 0, //轮胎位置
+        rainBrake: 0, //雨刹
+        mirror: 0, //后视镜
+        unsafeIterms: 0, //不安全物品
+        lifesavingHammer: 0, //救生锤
+        fireExtinguisher: 0, //灭火器
+        emergencyDoor: 0, //安全门
+        isDrinkWine: 0, //是否饮酒
+        shoes: 0, //鞋子
+        fatigue: 0, //疲劳驾驶
+        emotion: 0, //情绪
+        drivingExperience: 0, //是否有驾驶经验
+        healthy: 0 }, _defineProperty(_form, "healthy",
+      0), _defineProperty(_form, "driverId",
+      null), _defineProperty(_form, "driverName",
+      null), _defineProperty(_form, "lineRecordId",
+      null), _form) };
+
+
   },
   onLoad: function onLoad(e) {
-    this.id = e.id;
+    this.form.securityId = e.id;
+    this.form.lineRecordId = e.lineId;
+    this.getDriverList();
   },
   methods: {
     getDriverList: function getDriverList() {var _this = this;
       // 司机列表
       this.$http.post("operatorReport/listDriver", {
-        securityId: this.id }).
+        securityId: this.form.securityId }).
       then(function (res) {
         if (res.code == 100) {
           _this.driverList = res.info;
 
-
         }
       });
+    },
+    changeVal: function changeVal(val) {
+      console.log("切换");
+      console.log(val);
+      var index = val.index;
+      switch (index) {
+        case 1:
+          this.form.brake = val.val;
+          break;
+        case 2:
+          this.form.lamp = val.val;
+          break;
+        case 3:
+          this.form.tire = val.val;
+          break;
+        case 4:
+          this.form.rainBrake = val.val;
+          break;
+        case 5:
+          this.form.mirror = val.val;
+          break;
+        case 6:
+          this.form.unsafeIterms = val.val;
+          break;
+        case 7:
+          this.form.lifesavingHammer = val.val;
+          break;
+        case 8:
+          this.form.fireExtinguisher = val.val;
+          break;
+        case 9:
+          this.form.emergencyDoor = val.val;
+          break;
+        case 10:
+          this.form.isDrinkWine = val.val;
+          break;
+        case 11:
+          this.form.shoes = val.val;
+          break;
+        case 12:
+          this.form.fatigue = val.val;
+          break;
+        case 13:
+          this.form.emotion = val.val;
+          break;
+        case 14:
+          this.form.drivingExperience = val.val;
+          break;
+        case 15:
+          this.form.healthy = val.val;
+          break;}
+
     } } };exports.default = _default;
 
 /***/ }),

@@ -13,25 +13,28 @@
 		 
 		<view class="jilu">
 			<h3>行程记录</h3>
-			<view class="boxlist">
-				<view class="box">
+			<view v-if="recordList.length==0" class="nonebox">
+				{{time}},无行程
+			</view>
+			<view v-else class="boxlist">
+				<view class="box" v-for="(item,index) in recordList" @click="lookDetails(item.id)">
 					<view class="tit">
-						早
+						{{item.lineName}}
 					</view>
 					<view class="times">
-						<text>出发：8：00</text>
-						<text>到达：8：30</text>
+						<text>出发：{{item.startTime}}</text>
+						<text>到达：{{item.endTime}}</text>
 					</view>
 					<image src="../../static/img/left.png" mode="widthFix"></image>
 					<view class="businfo cl">
 						<view>
 							<image src="../../static/img/sy_004.png" mode="widthFix"></image>
-							<text>现代森林小镇</text>
+							<text>{{item.startSite}}</text>
 						</view>
 						
 						<view>
 							<image src="../../static/img/sy_005.png" mode="widthFix"></image>
-							<text>现代世贸中心</text>
+							<text>{{item.endSite}}</text>
 						</view>
 					</view>
 				</view>
@@ -52,18 +55,55 @@
 		},
 		data(){
 			return{
-				result:{}
+				result:{},
+				time:null,
+				id:null,
+				recordList:[]
 			}
 		},
 		mounted(){
 			this.$refs.calendar.show();
 		},
+		onLoad(e){
+			this.id=e.id
+			console.log(e.id)
+			let date=new Date()
+			let dateStr=""
+			dateStr=date.getFullYear()+"-"
+			let month=date.getMonth()+1
+			month=month<10?"0"+month:month
+			dateStr+=month+"-"
+			let day=date.getDate()
+			day=day<10?"0"+day:day
+			dateStr+=day
+			this.time=dateStr
+			this.getRecord()
+		},
 		methods:{
 			getResult(val){
 				console.log(val)
+				this.time=val.fullDate
+				this.getRecord()
 				// this.result=val;
 				// this.$refs.calendar.show();
-			}
+			},
+			getRecord(){
+				// 获取行程记录
+				this.$http.post("sRidingRecord/list",{
+					securityId:this.id,
+					fromTime:this.time,
+					toTime:this.time
+				}).then(res=>{
+					if(res.code==100){
+						this.recordList=res.info
+					}
+				})
+			},
+			lookDetails(id){
+				uni.navigateTo({
+					url:"details?id="+id
+				})
+			},
 		}
 	}
 </script>
@@ -111,6 +151,7 @@
 			border-radius: 0;
 			position: fixed;
 			bottom: 0;
+			left: 0;
 			width: 100%;
 		}
 	}
@@ -127,5 +168,15 @@
 				margin-right: 20rpx;
 			}
 		}
+	}
+	.nonebox{
+		// width: 90%;
+		margin: auto;
+		padding: 30rpx 0;
+		text-align: center;
+		color: #ccc;
+		border: 1px solid #eee;
+		border-radius: 20rpx;
+		background-color: #fff;
 	}
 </style>

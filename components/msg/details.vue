@@ -7,48 +7,74 @@
 		</view>
 		<view class="cl">
 			<text class="txt">刹车情况检查</text>
-			<Select :status="form.brake" :index="1" @changeVal="changeVal" />
+			<!-- <Select /> -->
+			<view class="">
+				{{form.brake==1?'不合格':'合格'}}
+			</view>
 		</view>
 		<view class="cl">
 			<text class="txt">车灯情况检查</text>
-			<Select :status="form.lamp"  :index="2" @changeVal="changeVal" />
+			<view class="">
+				{{form.lamp==1?'不合格':'合格'}}
+			</view>
 			<h4>（前照、刹车、转向、防雾、示廊，报警）</h4>
 		</view>
 		<view class="cl">
 			<text class="txt">轮胎检查</text>
-			<Select :status="form.tire"  :index="3" @changeVal="changeVal" />
+			<view class="">
+				{{form.tire==1?'不合格':'合格'}}
+			</view>
 			<h4>（花纹深度在合理范围内）</h4>
 		</view>
 		<view class="cl">
 			<text class="txt">雨刮检查</text>
-			<Select :status="form.rainBrake" :index="4" @changeVal="changeVal" />
+			<view class="">
+				{{form.rainBrake==1?'不合格':'合格'}}
+			</view>
 			<h4>（能刮干净，不影响视线）</h4>
 		</view>
 		<view class="cl">
 			<text class="txt">后视镜检查</text>
-			<Select :status="form.mirror" :index="5" @changeVal="changeVal" />
+				<view class="">
+					{{form.mirror==1?'不合格':'合格'}}
+				</view>
 			<h4>（无遮挡、破损、视线好）</h4>
 		</view>
 		<view class="cl">
 			<text class="txt">车上是否有不安全的物品</text>
-			<Select :status="form.unsafeIterms" :index="6" @changeVal="changeVal" />
+			<view class="">
+				{{form.unsafeIterms==1?'不合格':'合格'}}
+			</view>
 			<h4>（利器、易爆、易燃等）</h4>
 		</view>
 		<view class="cl">
 			<text class="txt">救生锤</text>
-			<Select :status="form.lifesavingHammer" :index="7" @changeVal="changeVal" />
+			<view class="">
+				{{form.lifesavingHammer==1?'不合格':'合格'}}
+			</view>
 			<h4>（至少3个，标志清除，可徒手启用）</h4>
 		</view>
 		<view class="cl">
 			<text class="txt">灭火器</text>
-			<Select :status="form.fireExtinguisher" :index="8" @changeVal="changeVal" />
+			<view class="">
+				{{form.fireExtinguisher==1?'不合格':'合格'}}
+			</view>
 			<h4>（2个，前后各一个，有效）</h4>
 		</view>
 		<view class="cl">
 			<text class="txt">安全门</text>
-			<Select :status="form.emergencyDoor" :index="9" @changeVal="changeVal" />
+			<view class="">
+				{{form.emergencyDoor==1?'不合格':'合格'}}
+			</view>
 			<h4>（可徒手开取）</h4>
 		</view>
+	<!-- 	<view class="cl">
+			<text class="txt">其他</text>
+			<view class="">
+				{{form.emergencyDoor==1?'不合格':'合格'}}
+			</view>
+			<h4></h4>
+		</view> -->
 		<view class="" style="margin-top: 20rpx;">
 			<view class="tit">
 				司机安全
@@ -56,34 +82,90 @@
 		</view>
 		<view class="cl">
 			<text class="txt">饮酒检查</text>
-			<Select :status="form.isDrinkWine" :index="10" @changeVal="changeVal" />
+			<view class="">
+				{{form.isDrinkWine==1?'不合格':'合格'}}
+			</view>
 		</view>
 		<view class="cl">
 			<text class="txt">鞋子检查</text>
-			<Select :status="form.shoes" :index="11" @changeVal="changeVal" />
+			<view class="">
+				{{form.shoes==1?'不合格':'合格'}}
+			</view>
 			<h4>（是否违规脱靴或高跟鞋等）</h4>
 		</view>
 		<view class="cl">
 			<text class="txt">疲劳情况检查</text>
-			<Select :status="form.fatigue" :index="12" @changeVal="changeVal" />
+			<view class="">
+				{{form.fatigue==1?'不合格':'合格'}}
+			</view>
 		</view>
 		<view class="cl">
 			<text class="txt">情绪情况检查</text>
-			<Select :status="form.emotion" :index="13" @changeVal="changeVal" />
+			<view class="">
+				{{form.emotion==1?'不合格':'合格'}}
+			</view>
 		</view>
 		<view class="cl">
 			<text class="txt">驾驶经验</text>
-			<Select :status="form.drivingExperience" :index="14" @changeVal="changeVal" />
+			<view class="">
+				{{form.drivingExperience==1?'不合格':'合格'}}
+			</view>
 		</view>
-	<!-- 	<view class="cl">
+		<!-- <view class="cl">
 			<text class="txt">驾照是否过期</text>
-			<Select :status="form.unsafeIterms" />
+			<view class="">
+				{{form.healthy==1?'不合格':'合格'}}
+			</view>
 		</view> -->
 		<view class="cl">
 			<text class="txt">健康情况检查</text>
-			<Select :status="form.healthy"  :index="15" @changeVal="changeVal" />
+			<view class="">
+				{{form.healthy==1?'不合格':'合格'}}
+			</view>
 		</view>
-		<button type="primary">开启</button>
+		<view class="" style="margin-top: 20rpx;">
+			<view class="tit">
+				司机行为监督
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">急启情况</text>
+			<view class="">
+				{{action.urgentStart==1?'不合格':'合格'}}
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">急刹情况</text>
+			<view class="">
+				{{action.brakes==1?'不合格':'合格'}}
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">急打方向</text>
+			<view class="">
+				{{action.rushDirection==1?'不合格':'合格'}}
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">激烈驾驶（原则30公里以内速度）</text>
+			<view class="">
+				{{action.drasticDriving==1?'不合格':'合格'}}
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">开车过程中打电话</text>
+			<view class="">
+				{{action.drivingCalling==1?'不合格':'合格'}}
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">开车过程中抽烟</text>
+			<view class="">
+				{{action.drivingSmoking==1?'不合格':'合格'}}
+			</view>
+		</view>
+		
+		<button type="primary">确认</button>
 		
 		<!-- 通知 -->
 		<view class="shadow" v-show="false">
@@ -110,100 +192,33 @@
 			return{
 				val1:1,		
 				id:null,
-				driverList:[],//司机列表
-				form:{
-					securityId:null,//安全员id
-					brake:0,//刹车情况   0合格  1不合格
-					lamp:0,//车灯  
-					tire:0,//轮胎位置
-					rainBrake:0,//雨刹
-					mirror:0,//后视镜
-					unsafeIterms:0,//不安全物品
-					lifesavingHammer:0,//救生锤
-					fireExtinguisher:0,//灭火器
-					emergencyDoor:0,//安全门
-					isDrinkWine:0,//是否饮酒
-					shoes:0,//鞋子
-					fatigue:0,//疲劳驾驶
-					emotion:0,//情绪
-					drivingExperience:0,//是否有驾驶经验
-					healthy:0,//健康状况
-					healthy:0,//健康状况
-					driverId:null,//司机id
-					driverName:null,//司机名称
-					lineRecordId:null,//线路id
-				}
-			}			
+				form:{},//安全报告详情
+				action:{}
+			}
 		},
 		onLoad(e){
-			this.form.securityId=e.id
-			this.form.lineRecordId=e.lineId
-			this.getDriverList()
+			this.id=e.id
+			this.getList()
 		},
 		methods:{
-			getDriverList(){
-				// 司机列表
-				this.$http.post("operatorReport/listDriver",{
-					securityId:	this.form.securityId
+			getList(){
+				// 司机、车况报告
+				this.$http.post("operatorReport/detailBoardReport",{
+					lineRecordId:this.id
 				}).then(res=>{
 					if(res.code==100){
-						this.driverList=res.info
-						
+						this.form=res.info	
+					}
+				})
+				// 司机行为监督详情
+				this.$http.post("operatorReport/detailOperationReport",{
+					lineRecordId:this.id
+				}).then(res=>{
+					if(res.code==100){
+						this.action=res.info	
 					}
 				})
 			},
-			changeVal(val){
-				console.log("切换")
-				console.log(val)
-				let index=val.index
-				switch(index){
-					case 1:
-						this.form.brake=val.val
-						break;
-					case 2:
-						this.form.lamp=val.val
-						break;
-					case 3:
-						this.form.tire=val.val
-						break;
-					case 4:
-						this.form.rainBrake=val.val
-						break;
-					case 5:
-						this.form.mirror=val.val
-						break;
-					case 6:
-						this.form.unsafeIterms=val.val
-						break;
-					case 7:
-						this.form.lifesavingHammer=val.val
-						break;
-					case 8:
-						this.form.fireExtinguisher=val.val
-						break;
-					case 9:
-						this.form.emergencyDoor=val.val
-						break;
-					case 10:
-						this.form.isDrinkWine=val.val
-						break;
-					case 11:
-						this.form.shoes=val.val
-						break;
-					case 12:
-						this.form.fatigue=val.val
-						break;
-					case 13:
-						this.form.emotion=val.val
-						break;
-					case 14:
-						this.form.drivingExperience=val.val
-						break;
-					case 15:
-						this.form.healthy=val.val
-						break;
-				}
-			}
 		}
 	}
 </script>
