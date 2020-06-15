@@ -51,8 +51,7 @@
 .index_page .msgbox .teacher.data-v-7fe9ff01 {
   padding: 0 30rpx;
   margin: 34rpx 0;
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
   background: #fa5617;
   color: #fff;
   line-height: 50rpx;
@@ -77,8 +76,7 @@
 .bus_list .box.data-v-7fe9ff01 {
   padding: 30rpx 0;
   background: #fff;
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
   margin: 10rpx 0;
 }
 .bus_list .box .tits.data-v-7fe9ff01 {
@@ -95,8 +93,7 @@
   float: right;
   padding: 0 22rpx;
   background: #f0f0f0;
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
   font-size: 28rpx;
 }
 .bus_list .box .status.data-v-7fe9ff01 {
@@ -118,8 +115,7 @@
   font-size: 28rpx;
   margin: 10rpx 0;
   padding: 0 29rpx;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 .bus_list .box .businfo > view image.data-v-7fe9ff01 {
   width: 80rpx;
@@ -165,8 +161,7 @@
   left: 0;
   margin: auto;
   background: #fff;
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
   padding: 20rpx;
 }
 .shadow .box ._h3.data-v-7fe9ff01 {
@@ -187,8 +182,7 @@
   height: 30rpx;
   line-height: 30rpx;
   border: 1px solid #eee;
-  -webkit-border-radius: 30rpx;
-          border-radius: 30rpx;
+  border-radius: 30rpx;
   padding: 5rpx 10rpx;
   margin-left: 20rpx;
 }

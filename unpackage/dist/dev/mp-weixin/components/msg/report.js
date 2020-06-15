@@ -159,7 +159,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Select = function Select() {__webpack_require__.e(/*! require.ensure | components/common/select */ "components/common/select").then((function () {return resolve(__webpack_require__(/*! ../common/select.vue */ 148));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Select = function Select() {__webpack_require__.e(/*! require.ensure | components/common/select */ "components/common/select").then((function () {return resolve(__webpack_require__(/*! ../common/select.vue */ 148));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -216,11 +216,92 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   data: function data() {
     return {
-      val1: 1 };
+      val1: 1,
+      show: true,
+      form: {
+        lineRecordId: null, //行车记录ID
+        securityId: null, //安全员
+        urgentStart: 0, //急启情况 0：没有
+        brakes: 0, //急刹车
+        rushDirection: 0, //急打方向
+        drasticDriving: 0, //激烈行驶
+        drivingCalling: 0, //打电话
+        drivingSmoking: 0 //抽烟
+      },
+      info: {} };
 
+  },
+  onLoad: function onLoad(opt) {
+    this.form.lineRecordId = opt.lineRecordId;
+    var userInfo = uni.getStorageSync('userInfo');
+    userInfo = JSON.parse(userInfo);
+    this.form.securityId = userInfo.id;
+    this.getInfo();
+  },
+  methods: {
+    changeVal: function changeVal(val) {
+      console.log(val);
+      var index = val.index;
+      switch (index) {
+        case 1:
+          this.form.urgentStart = val.val;
+          break;
+        case 2:
+          this.form.brakes = val.val;
+          break;
+        case 3:
+          this.form.rushDirection = val.val;
+          break;
+        case 4:
+          this.form.drasticDriving = val.val;
+          break;
+        case 5:
+          this.form.drivingCalling = val.val;
+          break;
+        case 6:
+          this.form.drivingSmoking = val.val;
+          break;}
 
+    },
+    getInfo: function getInfo() {var _this = this;
+      this.$http.post("operatorReport/endOperation", {
+        lineRecordId: this.form.lineRecordId,
+        securityId: this.form.securityId }).
+      then(function (res) {
+        if (res.code == 100) {
+          _this.info = res.info;
+        } else if (res.code == 250) {
+          uni.showToast({
+            icon: 'none',
+            title: res.msg });
 
-  } };exports.default = _default;
+        }
+      });
+    },
+    isOk: function isOk() {
+      this.show = false;
+    },
+    submitInfo: function submitInfo() {
+      this.$http.post("operatorReport/addOperationReport").then(function (res) {
+        if (res.code == 100) {
+          uni.showToast({
+            icon: "success",
+            title: "报告填写成功！" });
+
+          setTimeout(function () {
+            uni.switchTab({
+              url: "../../pages/index/index" });
+
+          }, 2000);
+        } else if (res.code == 250) {
+          uni.showToast({
+            icon: "none",
+            title: res.msg });
+
+        }
+      });
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 

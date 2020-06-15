@@ -41,8 +41,7 @@
   width: 100%;
   background: #fff;
   display: block;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding: 0 20rpx;
 }
 .info_page .msg.data-v-3245dba2 {
@@ -56,8 +55,7 @@ button.data-v-3245dba2 {
   position: absolute;
   bottom: 0;
   left: 0;
-  -webkit-border-radius: 0;
-          border-radius: 0;
+  border-radius: 0;
   background: #ff6d00;
   color: #fff;
 }
@@ -69,11 +67,9 @@ button.data-v-3245dba2 {
   padding: 20rpx;
   border: 1px solid #ccc;
   background: #eee;
-  -webkit-border-radius: 10rpx;
-          border-radius: 10rpx;
+  border-radius: 10rpx;
   margin-top: 20rpx;
   height: 300rpx;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 

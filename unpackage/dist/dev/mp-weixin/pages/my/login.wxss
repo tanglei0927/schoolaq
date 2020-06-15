@@ -30,7 +30,6 @@
 }
 .login_page ._h3.data-v-51e82bca {
   padding: 50rpx 20rpx 20rpx 20rpx;
-  background: -webkit-gradient(linear, left top, left bottom, from(#FF6C00), to(#fff));
   background: -webkit-linear-gradient(#FF6C00, #fff);
   background: linear-gradient(#FF6C00, #fff);
   font-size: 50rpx;
@@ -43,8 +42,7 @@
 }
 .login_page button.data-v-51e82bca {
   width: 95%;
-  -webkit-border-radius: 80rpx;
-          border-radius: 80rpx;
+  border-radius: 80rpx;
   background: #FF6C00;
   margin-top: 40rpx;
 }

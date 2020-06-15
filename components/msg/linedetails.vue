@@ -2,28 +2,28 @@
 	<view class="details">
 		<view class="carbox">
 			<view class="tits cl">
-				<text class="time">平二</text>
-				<text>预计：28人</text>
+				<text class="time">{{form.type==1?'早':'晚'}}</text>
+				<text>预计：{{form.expectCount}}人</text>
 			</view>
 			<view class="status cl">
-				<image class="bjimg" src="../../static/img/left.png" mode="widthFix"></image>
-				<image class="car" src="../../static/img/sy_006left.png" mode="widthFix"></image>
+				<image class="bjimg" src="../../static/img/right.png" mode="widthFix"></image>
+				<image class="car" src="../../static/img/sy_006.png" mode="widthFix"></image>
 			</view>
 			<view class="businfo cl">
 				<view>
 					<image src="../../static/img/sy_004.png" mode="widthFix"></image>
-					<text>现代世贸中心</text>
+					<text>{{form.startSiteName}}</text>
 				</view>
 				<view>
 					<image src="../../static/img/sy_005.png" mode="widthFix"></image>
-					<text>现代世贸中心</text>
+					<text>{{form.endSiteName}}</text>
 				</view>
 			</view>
 			<view class="cl infos">
-				<text>发车时间：8:00</text>
-				<text>预计到达：8:00</text>
-				<view class="">
-					<text>车内人数：28</text>
+				<text>发车时间：{{form.startTime}}</text>
+				<text>预计到达：{{form.endTime}}</text>
+				<view class="cl">
+					<text>车内人数：{{form.count}}</text>
 					<switch @change="switch2Change" />
 				</view>
 			</view>			
@@ -33,80 +33,39 @@
 				车内人数
 			</view>
 			<view class="box cl">
-				<view class="tx">
-					<view v-show="false"></view>
-					<image src="../../static/logo.png" mode="widthFix"></image>
-				</view>
-				<view class="tx">
-					<view></view>
-					<image src="../../static/logo.png" mode="widthFix"></image>
-				</view>
-				<view class="tx">
-					<view></view>
-					<image src="../../static/logo.png" mode="widthFix"></image>
-				</view>
-				<view class="tx">
-					<view></view>
-					<image src="../../static/logo.png" mode="widthFix"></image>
-				</view>
-				<view class="tx">
-					<view></view>
-					<image src="../../static/logo.png" mode="widthFix"></image>
-				</view>
-				<view class="tx">
-					<view></view>
-					<image src="../../static/logo.png" mode="widthFix"></image>
-				</view>
-				<view class="tx">
-					<view></view>
-					<image src="../../static/logo.png" mode="widthFix"></image>
-				</view>
-				<view class="tx">
-					<view></view>
-					<image src="../../static/logo.png" mode="widthFix"></image>
-				</view>
-				<view class="tx">
-					<view></view>
-					<image src="../../static/logo.png" mode="widthFix"></image>
-				</view>
-				<view class="tx">
-					<view></view>
-					<image src="../../static/logo.png" mode="widthFix"></image>
-				</view>
-				<view class="tx">
-					<view></view>
-					<image src="../../static/logo.png" mode="widthFix"></image>
-				</view>
-				<view class="tx">
-					<view></view>
-					<image src="../../static/logo.png" mode="widthFix"></image>
-				</view>
+				<view v-for="(item,index) in form.childrenVos" :class="item.isTake==1?'checktx tx':'tx'" @click="lookDetails(item)" v-if="isAll?(item.isTake==0):true">					
+					<image :src="$imgurl+'eaOss/download/'+item.photo" mode="widthFix"></image>
+				</view>				
 			</view>
 		</view>
-		<button type="primary" @click="goreport()">填写运行报告</button>
+		<button class="footerbtn" type="primary" @click="goreport()">填写运行报告</button>
 		
 		<view class="shadow" v-if="show">
 			<view class="box">
 				<view class="tx">
-					<image src="../../static/logo.png" mode="widthFix"></image>
+					<image :src="$imgurl+'eaOss/download/'+childPhoto" mode="widthFix"></image>
 				</view>
 				<view>
-					姓名：张三
+					姓名：{{childInfo.childrenName}}
 				</view>
-				<view>班级：一年级一班</view>
-				<view>上车时间：8:00</view>
-				<view>下车时间：8:00</view>
-				<view>
+				<view>班级：{{childInfo.grade}}年级{{childInfo.clazz}}班</view>
+				<view>上车时间：{{childInfo.boardTime}}</view>
+				<view>下车时间：{{childInfo.takeTime}}</view>
+				<!-- <view>
 					<text>是否听话：</text>
 					<switch checked="true" @change="changeSwitch" />
-				</view>
+				</view> -->
 				<view>
-					 <label class="radio"><radio value="r1" checked="true" />打闹离座</label>
-					<label class="radio"><radio value="r2" />危品携带</label>
-					<label class="radio"><radio value="r2" />其他</label>
+					<radio-group @change="radioChange" v-model="childInfo.status">
+						<label class="radio"><radio :value="0" checked="true" />没问题</label>
+						<label class="radio"><radio :value="1" checked="true" />打闹离座</label>
+						<label class="radio"><radio :value="2" />危品携带</label>
+						<label class="radio"><radio :value="3" />其他</label>
+					</radio-group>
 				</view>
-				<textarea value="" placeholder="请输入" />
-				<button type="primary" @click="show=false">确定</button>
+				<p>其他说明：</p>
+				<textarea value="" v-model="childInfo.otherReson" placeholder="请输入" />
+				<button type="primary" @click="submitInfo()">确定</button>
 			</view>
 		</view>
 	</view>
@@ -116,20 +75,93 @@
 	export default{
 		data(){
 			return{
-				show:false
+				show:false,
+				id:null,
+				form:{},
+				isAll:false,
+				childInfo:{},
+				childPhoto:''
 			}
+		},
+		onLoad(e){
+			this.id=e.id
+			this.getInfo()
 		},
 		methods:{
 			switch2Change(val){
 				console.log(val)
+				let list=this.form.childrenVos
+				this.isAll=val.detail.value
+				if(this.isAll){
+					// 车内人数
+					let count=0
+					list.forEach((item,index)=>{
+						if(item.isTake==0){
+							count++
+						}
+					})
+					this.form.count=count
+				}else{
+					// 所有
+					this.form.count=list.length
+				}
 			},
 			goreport(){
 				uni.navigateTo({
-					url:"report"
+					url:"report?lineRecordId="+this.form.lineRecordId
 				})
 			},
 			changeSwitch(){
 				
+			},
+			getInfo(){
+				this.$http.post("sLine/lineDetail",{
+					lineId:this.id
+				}).then(res=>{
+					if(res.code==100){
+						this.form=res.info
+					}else if(res.code==250){
+						uni.showToast({
+							icon:"none",
+							title:res.msg
+						})
+						setTimeout(()=>{
+							uni.navigateBack({
+								
+							})
+						},2000)
+					}
+				})
+			},
+			lookDetails(item){
+				// 学生乘车记录详情
+				this.$http.post("sRidingRecord/presentationDetail",{
+					ridingRedordId:item.ridingRecordId
+				}).then(res=>{
+					if(res.code==100){
+						this.show=true
+						this.childInfo=res.info
+						this.childPhoto=item.photo
+					}
+				})
+			},
+			submitInfo(){
+				// 提交学生乘车情况
+				let data=this.childInfo
+				this.$http.post("sRidingRecord/presentation",data).then(res=>{
+					if(res.code==100){
+						// uni.showToast({
+						// 	icon:"success",
+						// 	title:"提交成功！"
+						// })
+						this.show=false
+					}else{
+						uni.showToast({
+							icon:"none",
+							title:res.msg
+						})
+					}
+				})
 			},
 		}
 	}
@@ -204,12 +236,21 @@
 			}
 		}
 	}
+	.footerbtn{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+	}
 	.txbox{
 		padding: 20rpx 10rpx;
 		background: #fff;
 		padding-bottom: 100rpx;
 		.tit{
 			margin-left: 20rpx;
+		}
+		.checktx{
+			filter: grayscale(1);
 		}
 		.tx{
 			margin: 20rpx;
@@ -219,6 +260,7 @@
 			overflow: hidden;
 			float: left;
 			position: relative;
+			border: 1px solid #eee;
 			image{
 				width: 100%;
 			}
@@ -267,6 +309,7 @@
 				overflow: hidden;
 				margin-bottom: 30rpx;
 			}
+			
 			image{
 				width: 100%;
 			}
@@ -275,7 +318,7 @@
 				border-radius: 50rpx;
 			}
 			textarea{
-				background: #ccc;
+				background: #eee;
 				height: 200rpx;
 				width: 100%;
 				padding: 20rpx;

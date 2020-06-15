@@ -29,8 +29,7 @@
   padding: 5rpx 40rpx;
   background: #eee;
   color: #666;
-  -webkit-border-radius: 50rpx;
-          border-radius: 50rpx;
+  border-radius: 50rpx;
   height: 50rpx;
   line-height: 50rpx;
 }
@@ -48,7 +47,6 @@
   z-index: 100;
   left: 0;
   text-align: center;
-  -webkit-border-radius: 40rpx;
-          border-radius: 40rpx;
+  border-radius: 40rpx;
 }
 

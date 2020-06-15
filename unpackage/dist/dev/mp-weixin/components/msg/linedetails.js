@@ -97,11 +97,6 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  if (!_vm._isMounted) {
-    _vm.e0 = function($event) {
-      _vm.show = false
-    }
-  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -208,65 +203,97 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
     return {
-      show: false };
+      show: false,
+      id: null,
+      form: {},
+      isAll: false,
+      childInfo: {},
+      childPhoto: '' };
 
+  },
+  onLoad: function onLoad(e) {
+    this.id = e.id;
+    this.getInfo();
   },
   methods: {
     switch2Change: function switch2Change(val) {
       console.log(val);
+      var list = this.form.childrenVos;
+      this.isAll = val.detail.value;
+      if (this.isAll) {
+        // 车内人数
+        var count = 0;
+        list.forEach(function (item, index) {
+          if (item.isTake == 0) {
+            count++;
+          }
+        });
+        this.form.count = count;
+      } else {
+        // 所有
+        this.form.count = list.length;
+      }
     },
     goreport: function goreport() {
       uni.navigateTo({
-        url: "report" });
+        url: "report?lineRecordId=" + this.form.lineRecordId });
 
     },
     changeSwitch: function changeSwitch() {
 
+    },
+    getInfo: function getInfo() {var _this = this;
+      this.$http.post("sLine/lineDetail", {
+        lineId: this.id }).
+      then(function (res) {
+        if (res.code == 100) {
+          _this.form = res.info;
+        } else if (res.code == 250) {
+          uni.showToast({
+            icon: "none",
+            title: res.msg });
+
+          setTimeout(function () {
+            uni.navigateBack({});
+
+
+          }, 2000);
+        }
+      });
+    },
+    lookDetails: function lookDetails(item) {var _this2 = this;
+      // 学生乘车记录详情
+      this.$http.post("sRidingRecord/presentationDetail", {
+        ridingRedordId: item.ridingRecordId }).
+      then(function (res) {
+        if (res.code == 100) {
+          _this2.show = true;
+          _this2.childInfo = res.info;
+          _this2.childPhoto = item.photo;
+        }
+      });
+    },
+    submitInfo: function submitInfo() {var _this3 = this;
+      // 提交学生乘车情况
+      var data = this.childInfo;
+      this.$http.post("sRidingRecord/presentation", data).then(function (res) {
+        if (res.code == 100) {
+          // uni.showToast({
+          // 	icon:"success",
+          // 	title:"提交成功！"
+          // })
+          _this3.show = false;
+        } else {
+          uni.showToast({
+            icon: "none",
+            title: res.msg });
+
+        }
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

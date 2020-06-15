@@ -4,6 +4,21 @@
 			<view class="tit">
 				车况
 			</view>
+			<view class="driver">
+				<xfl-select
+					:list="carStr"
+					:clearable="false"
+					:showItemNum="5" 
+					:listShow="false"
+					:isCanInput="true"  
+					:style_Container="'height: 50px; font-size: 16px;'"
+					:placeholder = "'请选择车辆'"
+					:initValue="selectValue"
+					:selectHideType="'hideAll'"
+					@change="selectChangeCar"
+				>
+				</xfl-select>
+			</view>
 		</view>
 		<view class="cl">
 			<text class="txt">刹车情况检查</text>
@@ -49,9 +64,24 @@
 			<Select :status="form.emergencyDoor" :index="9" @changeVal="changeVal" />
 			<h4>（可徒手开取）</h4>
 		</view>
-		<view class="" style="margin-top: 20rpx;">
+		<view class="driverbox cl" style="margin-top: 20rpx;">
 			<view class="tit">
 				司机安全
+			</view>
+			<view class="driver">
+				<xfl-select
+					:list="driverStr"
+					:clearable="false"
+					:showItemNum="5" 
+					:listShow="false"
+					:isCanInput="true"  
+					:style_Container="'height: 50px; font-size: 16px;'"
+					:placeholder = "'请选择司机'"
+					:initValue="selectDriver"
+					:selectHideType="'hideAll'"
+					@change="selectChange"
+				>
+				</xfl-select>
 			</view>
 		</view>
 		<view class="cl">
@@ -83,7 +113,7 @@
 			<text class="txt">健康情况检查</text>
 			<Select :status="form.healthy"  :index="15" @changeVal="changeVal" />
 		</view>
-		<button type="primary">开启</button>
+		<button type="primary" @click="openBus()">开启</button>
 		
 		<!-- 通知 -->
 		<view class="shadow" v-show="false">
@@ -102,15 +132,21 @@
 
 <script>
 	import Select from "../common/select.vue"
+	import  xflSelect from"../common/xfl-select/xfl-select.vue"
 	export default{
 		components:{
-			Select
+			Select,xflSelect
 		},
 		data(){
 			return{
 				val1:1,		
 				id:null,
 				driverList:[],//司机列表
+				driverStr:[],
+				carStr:[],
+				carList:[],
+				selectValue:'',
+				selectDriver:'',
 				form:{
 					securityId:null,//安全员id
 					brake:0,//刹车情况   0合格  1不合格
@@ -131,24 +167,74 @@
 					healthy:0,//健康状况
 					driverId:null,//司机id
 					driverName:null,//司机名称
-					lineRecordId:null,//线路id
+					lineId:null,//线路id
 				}
 			}			
 		},
 		onLoad(e){
+			console.log(e)
 			this.form.securityId=e.id
-			this.form.lineRecordId=e.lineId
+			this.form.lineId=e.lineId
 			this.getDriverList()
+			this.getCarList()
+		},
+		watch:{
+			driverStr:{
+				handler(newVal,oldVal){
+					console.log("list")
+					console.log(newVal)
+				}
+			},
+			deep:true
 		},
 		methods:{
+			getMr(){
+				// 获取默认的司机和校车
+				this.$http.post('sLine/linesimpl',{
+					lineId:this.form.lineId
+				}).then(res=>{
+					if(res.code==100){
+						this.selectDriver=res.info.driverSimple.name
+						this.selectValue=res.info.vehicleSimple.licenseId
+						this.form.driverId=res.info.driverSimple.id
+						this.form.driverName=this.selectDriver
+						this.form.vehicleId=res.info.driverSimple.id
+						this.form.vehicleCard=this.selectValue
+					}
+				})
+			},
 			getDriverList(){
 				// 司机列表
+				let that=this
 				this.$http.post("operatorReport/listDriver",{
 					securityId:	this.form.securityId
 				}).then(res=>{
 					if(res.code==100){
-						this.driverList=res.info
-						
+						// this.driverList=res.info
+						let list=res.info
+						that.driverList=[]
+						that.driverStr=[]
+						list.forEach((item,index)=>{
+							that.driverStr.push(item.name)
+							that.driverList.push(item)
+						})
+					}
+				})
+			},
+			getCarList(){
+				let that=this
+				this.$http.post("operatorReport/listVehicle",{
+					securityId:	this.form.securityId
+				}).then(res=>{
+					if(res.code==100){
+						// this.driverList=res.info
+						let list=res.info
+						that.carList=[]
+						that.carStr=[]
+						list.forEach((item,index)=>{
+							that.carStr.push(item.licenseId)
+							that.carList.push(item)
+						})
 					}
 				})
 			},
@@ -202,8 +288,44 @@
 					case 15:
 						this.form.healthy=val.val
 						break;
+				}				
+			},
+			selectChange(val){
+				// 选择司机
+				this.form.driverId=this.driverList[val.index].id
+				this.form.driverName=val.newVal
+				// console.log(val)
+			},
+			selectChangeCar(val){
+				// 车辆
+				this.form.vehicleId=this.carList[val.index].id
+				this.form.vehicleCard=val.newVal
+			},
+			openBus(){
+				// 开启
+				console.log(this.form)
+				if(!this.form.driverId||!this.form.vehicleId){
+					uni.showToast({
+						icon:"none",
+						title:"请选择司机和车辆"
+					})
+				}else{
+					// 添加安全报告
+					this.$http.post("operatorReport/addBoardReport",this.form).then(res=>{
+						if(res.code==100){
+							uni.showToast({
+								icon:"success",
+								title:"填写成功！"
+							})
+							setTimeout(()=>{
+								uni.navigateBack({
+									
+								})
+							},2000)
+						}
+					})
 				}
-			}
+			},
 		}
 	}
 </script>

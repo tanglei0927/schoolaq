@@ -1701,7 +1701,7 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = 'http://192.168.0.112:3326/';
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = 'http://192.168.0.108:3326/';
 // const baseUrl='http://47.111.141.24/api/'
 // const baseUrl='http://192.168.0.125/api/'
 

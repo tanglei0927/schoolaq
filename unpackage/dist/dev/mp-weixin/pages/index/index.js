@@ -341,38 +341,58 @@ var _default =
       }
 
     },
-    lookDetail: function lookDetail() {
+    lookDetail: function lookDetail(item) {
       console.log("点击");
       this.flag = false;
-      // this.widths[0]=10
-      //运行当中===>线路详情
       uni.navigateTo({
-        url: "../../components/msg/linedetails" });
+        url: "../../components/msg/linedetails?id=" + item.lineId });
 
     },
     touchStart: function touchStart(e, index) {
       console.log("拖动小车");
       this.flag = true;
-      // console.log(e)
+      console.log(e);
       var page = e.touches[0].pageX;
-      // console.log(page)
-      // console.log(index)
-      // switch(index){
-      // 	case 0:
-      // 	// this.widths[index]=page
-      // 	this.width1=page
-      // 	// console.log(this.widths[0])
-      // }
       this.widthList[index] = page;
 
     },
-    touchEnd: function touchEnd(id) {
-      if (this.flag) {
-        console.log("查看线路安全报告");
-        uni.navigateTo({
-          url: "../../components/msg/security?id=" + this.form.id + "&lineId=" + id });
+    touchEnd: function touchEnd(item) {var _this = this;
+      console.log(item);
+      if (item.status) {
+        // 线路开启状态
+        // this.lookDetail(item)				
+        this.$http.post('operatorReport/haveBoardReport', {
+          lineId: item.lineId }).
+        then(function (res) {
+          if (res.code == 100) {
+            // 没有填写报告 去填写报告
+            uni.navigateTo({
+              url: "../../components/msg/security?id=" + _this.form.id + "&lineId=" + item.lineId });
 
+          } else if (res.code == 250) {
+            uni.showToast({
+              icon: "none",
+              title: res.msg });
+
+          } else if (res.code == 450) {
+            // 已经填写报告
+            _this.lookDetail(item);
+          }
+        });
+      } else {
+        // 线路结束状态
+        uni.showToast({
+          icon: "none",
+          title: "线路还没有开启，请在车载设备上开启线路" });
+
+        // if(this.flag){
+        // 	console.log("查看线路安全报告")
+        // 	uni.navigateTo({
+        // 		url:"../../components/msg/security?id="+this.form.id+"&lineId="+item.lineId
+        // 	})
+        // }
       }
+
 
     },
     goInfo: function goInfo(index) {
@@ -389,31 +409,31 @@ var _default =
 
     },
     // 获取安全员默认的线路
-    getLineQuery: function getLineQuery() {var _this = this;
+    getLineQuery: function getLineQuery() {var _this2 = this;
       this.$http.post("sLine/securityLineQuery", {
         id: this.form.id }).
       then(function (res) {
         if (res.code == 100) {
-          _this.lineList = res.info;
-          var list = re.info;
+          _this2.lineList = res.info;
+          var list = res.info;
           list.forEach(function (item, index) {
-            _this.widthList[index] = 0;
+            _this2.widthList[index] = 0;
           });
         }
       });
     },
-    searchLine: function searchLine() {var _this2 = this;
+    searchLine: function searchLine() {var _this3 = this;
       // 搜索线路
       this.$http.post("sLine/lineList", {
         name: this.searchStr,
         id: this.form.id }).
       then(function (res) {
         if (res.code == 100) {
-          _this2.searchList = res.info;
+          _this3.searchList = res.info;
         }
       });
     },
-    checkLine: function checkLine(id) {var _this3 = this;
+    checkLine: function checkLine(id) {var _this4 = this;
       this.CheckNum = id;
       // 设置线路默认的安全员、安全员选择线路
       uni.showLoading({
@@ -431,8 +451,8 @@ var _default =
               icon: "success",
               title: "设置成功" });
 
-            _this3.shadow = false;
-            _this3.getLineQuery();
+            _this4.shadow = false;
+            _this4.getLineQuery();
           }, 1000);
         }
       });

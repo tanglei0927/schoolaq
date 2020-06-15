@@ -57,8 +57,7 @@
   display: inline-block;
   width: 30rpx;
   height: 30rpx;
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
   border: 1px solid #ccc;
   background: #fff;
 }
@@ -77,8 +76,7 @@
   height: 20rpx;
   width: 20rpx;
   background: #FF6C00;
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
 }
 .grouplist .li > view .check + text.data-v-6be591ec {
   color: #FF6C00;

@@ -45,12 +45,10 @@
   float: left;
   width: 125rpx;
   height: 125rpx;
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
   overflow: hidden;
   border: 2px solid #fff;
-  -webkit-box-shadow: 0px 0px 10px 3px #ccc;
-          box-shadow: 0px 0px 10px 3px #ccc;
+  box-shadow: 0px 0px 10px 3px #ccc;
 }
 .userinfopage > view .touxiang image.data-v-33d41957 {
   width: 100%;

@@ -38,7 +38,7 @@
 				</view>
 				<view class="status cl">
 					<image class="bjimg" src="../../static/img/right.png" mode="widthFix"></image>
-					<image class="car" :style="'left:'+widthList[index]+'px'" @touchend="touchEnd(item.id)" @click="lookDetail()" @touchmove="touchStart($event,index)" src="../../static/img/sy_006.png" mode="widthFix"></image>
+					<image class="car" :style="'left:'+widthList[index]+'px'" @touchend="touchEnd(item)" @click="lookDetail(item)" @touchmove="touchStart($event,index)" src="../../static/img/sy_006.png" mode="widthFix"></image>
 				</view>
 				<view class="businfo cl">
 					<view>
@@ -192,38 +192,58 @@
 				}
 				
 			},
-			lookDetail(){
+			lookDetail(item){
 				console.log("点击")
 				this.flag=false
-				// this.widths[0]=10
-				//运行当中===>线路详情
 				uni.navigateTo({
-					url:"../../components/msg/linedetails"
+					url:"../../components/msg/linedetails?id="+item.lineId
 				})
 			},
 			touchStart(e,index){
 				console.log("拖动小车")
 				this.flag=true
-				// console.log(e)
+				console.log(e)
 				let page=e.touches[0].pageX
-				// console.log(page)
-				// console.log(index)
-				// switch(index){
-				// 	case 0:
-				// 	// this.widths[index]=page
-				// 	this.width1=page
-				// 	// console.log(this.widths[0])
-				// }
 				this.widthList[index]=page
 				
 			},
-			touchEnd(id){
-				if(this.flag){
-					console.log("查看线路安全报告")
-					uni.navigateTo({
-						url:"../../components/msg/security?id="+this.form.id+"&lineId="+id
+			touchEnd(item){
+				console.log(item)
+				if(item.status){
+					// 线路开启状态
+					// this.lookDetail(item)				
+					this.$http.post('operatorReport/haveBoardReport',{
+						lineId:item.lineId
+					}).then(res=>{
+						if(res.code==100){
+							// 没有填写报告 去填写报告
+							uni.navigateTo({
+								url:"../../components/msg/security?id="+this.form.id+"&lineId="+item.lineId
+							})
+						}else if(res.code==250){
+							uni.showToast({
+								icon:"none",
+								title:res.msg
+							})
+						}else if(res.code==450){
+							// 已经填写报告
+							this.lookDetail(item)
+						}
 					})
+				}else{
+					// 线路结束状态
+					uni.showToast({
+						icon:"none",
+						title:"线路还没有开启，请在车载设备上开启线路"
+					})
+					// if(this.flag){
+					// 	console.log("查看线路安全报告")
+					// 	uni.navigateTo({
+					// 		url:"../../components/msg/security?id="+this.form.id+"&lineId="+item.lineId
+					// 	})
+					// }
 				}
+				
 				
 			},
 			goInfo(index){
@@ -246,7 +266,7 @@
 				}).then(res=>{
 					if(res.code==100){
 						this.lineList=res.info
-						let list=re.info
+						let list=res.info
 						list.forEach((item,index)=>{
 							this.widthList[index]=0
 						})

@@ -7,41 +7,41 @@
 		</view>
 		<view class="cl">
 			<text class="txt">紧急情况</text>
-			<Select />
+			<Select :status="form.urgentStart" :index="1" @changeVal="changeVal" />
 		</view>
 		<view class="cl">
 			<text class="txt">急刹情况</text>
-			<Select />
+			<Select :status="form.brakes" :index="2" @changeVal="changeVal" />
 		</view>
 		<view class="cl">
 			<text class="txt">急打方向</text>
-			<Select />
+			<Select :status="form.rushDirection" :index="3" @changeVal="changeVal" />
 		</view>
 		<view class="cl">
 			<text class="txt">激烈驾驶</text>
-			<Select />
+			<Select :status="form.drasticDriving" :index="4" @changeVal="changeVal" />
 			<h4>（原则上30公里以内速度）</h4>
 		</view>
 		<view class="cl">
 			<text class="txt">开车过程中打电话</text>
-			<Select />
+			<Select :status="form.drivingCalling" :index="5" @changeVal="changeVal" />
 		</view>
 		<view class="cl">
 			<text class="txt">开车过程中抽烟</text>
-			<Select />
+			<Select :status="form.drivingSmoking" :index="6" @changeVal="changeVal" />
 		</view>
-		<button type="primary">结束行程</button>
+		<button type="primary" @click="submitInfo()">结束行程</button>
 		
 		<!-- 通知 -->
-		<view class="shadow">
+		<view class="shadow" v-if="show">
 			<view class="box">
 				<h3>通知</h3>
-				<view>发车时间：8：00</view>
-				<view>到达时间：8:30</view>
-				<view>上车28人</view>
-				<view>下车：28人</view>
-				<view>滞留：0人</view>
-				<button type="primary">确认</button>
+				<view>发车时间：{{info.startTime?info.startTime:''}}</view>
+				<view>到达时间：{{info.endTime?info.endTime:''}}</view>
+				<view>上车：{{info.alreadyNumber?info.alreadyNumber:0}}人</view>
+				<view>下车：{{info.takeNumber?info.takeNumber:0}}人</view>
+				<view>滞留：{{info.inNumber?info.inNumber:0}}人</view>
+				<button type="primary" @click="isOk()">确认</button>
 			</view>
 		</view>
 	</view>
@@ -56,9 +56,90 @@
 		data(){
 			return{
 				val1:1,
-				
+				show:true,
+				form:{
+					lineRecordId:null,//行车记录ID
+					securityId:null,//安全员
+					urgentStart:0,//急启情况 0：没有
+					brakes:0,//急刹车
+					rushDirection:0,//急打方向
+					drasticDriving:0,//激烈行驶
+					drivingCalling:0,//打电话
+					drivingSmoking:0,//抽烟
+				},
+				info:{}
+			}			
+		},
+		onLoad(opt){
+			this.form.lineRecordId=opt.lineRecordId
+			let userInfo=uni.getStorageSync('userInfo')
+			userInfo=JSON.parse(userInfo)
+			this.form.securityId=userInfo.id
+			this.getInfo()
+		},
+		methods:{
+			changeVal(val){
+				console.log(val)
+				let index=val.index
+				switch(index){
+					case 1:
+						this.form.urgentStart=val.val
+						break;
+					case 2:
+						this.form.brakes=val.val
+						break;
+					case 3:
+						this.form.rushDirection=val.val
+						break;
+					case 4:
+						this.form.drasticDriving=val.val
+						break;
+					case 5:
+						this.form.drivingCalling=val.val
+						break;
+					case 6:
+						this.form.drivingSmoking=val.val
+						break;
+				}
+			},
+			getInfo(){
+				this.$http.post("operatorReport/endOperation",{
+					lineRecordId:this.form.lineRecordId,
+					securityId:this.form.securityId
+				}).then(res=>{
+					if(res.code==100){
+						this.info=res.info
+					}else if(res.code==250){
+						uni.showToast({
+							icon:'none',
+							title:res.msg
+						})
+					}
+				})
+			},
+			isOk(){
+				this.show=false
+			},
+			submitInfo(){
+				this.$http.post("operatorReport/addOperationReport").then(res=>{
+					if(res.code==100){
+						uni.showToast({
+							icon:"success",
+							title:"报告填写成功！"
+						})
+						setTimeout(()=>{
+							uni.switchTab({
+								url:"../../pages/index/index"
+							})
+						},2000)
+					}else if(res.code==250){
+						uni.showToast({
+							icon:"none",
+							title:res.msg
+						})
+					}
+				})
 			}
-			
 		}
 	}
 </script>

@@ -130,7 +130,38 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var Select = function Select() {__webpack_require__.e(/*! require.ensure | components/common/select */ "components/common/select").then((function () {return resolve(__webpack_require__(/*! ../common/select.vue */ 148));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var Select = function Select() {__webpack_require__.e(/*! require.ensure | components/common/select */ "components/common/select").then((function () {return resolve(__webpack_require__(/*! ../common/select.vue */ 148));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var xflSelect = function xflSelect() {__webpack_require__.e(/*! require.ensure | components/common/xfl-select/xfl-select */ "components/common/xfl-select/xfl-select").then((function () {return resolve(__webpack_require__(/*! ../common/xfl-select/xfl-select.vue */ 133));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -236,13 +267,18 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 {
   components: {
-    Select: Select },
+    Select: Select, xflSelect: xflSelect },
 
   data: function data() {var _form;
     return {
       val1: 1,
       id: null,
       driverList: [], //司机列表
+      driverStr: [],
+      carStr: [],
+      carList: [],
+      selectValue: '',
+      selectDriver: '',
       form: (_form = {
         securityId: null, //安全员id
         brake: 0, //刹车情况   0合格  1不合格
@@ -262,25 +298,75 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
         healthy: 0 }, _defineProperty(_form, "healthy",
       0), _defineProperty(_form, "driverId",
       null), _defineProperty(_form, "driverName",
-      null), _defineProperty(_form, "lineRecordId",
+      null), _defineProperty(_form, "lineId",
       null), _form) };
 
 
   },
   onLoad: function onLoad(e) {
+    console.log(e);
     this.form.securityId = e.id;
-    this.form.lineRecordId = e.lineId;
+    this.form.lineId = e.lineId;
     this.getDriverList();
+    this.getCarList();
   },
+  watch: {
+    driverStr: {
+      handler: function handler(newVal, oldVal) {
+        console.log("list");
+        console.log(newVal);
+      } },
+
+    deep: true },
+
   methods: {
-    getDriverList: function getDriverList() {var _this = this;
+    getMr: function getMr() {var _this = this;
+      // 获取默认的司机和校车
+      this.$http.post('sLine/linesimpl', {
+        lineId: this.form.lineId }).
+      then(function (res) {
+        if (res.code == 100) {
+          _this.selectDriver = res.info.driverSimple.name;
+          _this.selectValue = res.info.vehicleSimple.licenseId;
+          _this.form.driverId = res.info.driverSimple.id;
+          _this.form.driverName = _this.selectDriver;
+          _this.form.vehicleId = res.info.driverSimple.id;
+          _this.form.vehicleCard = _this.selectValue;
+        }
+      });
+    },
+    getDriverList: function getDriverList() {
       // 司机列表
+      var that = this;
       this.$http.post("operatorReport/listDriver", {
         securityId: this.form.securityId }).
       then(function (res) {
         if (res.code == 100) {
-          _this.driverList = res.info;
-
+          // this.driverList=res.info
+          var list = res.info;
+          that.driverList = [];
+          that.driverStr = [];
+          list.forEach(function (item, index) {
+            that.driverStr.push(item.name);
+            that.driverList.push(item);
+          });
+        }
+      });
+    },
+    getCarList: function getCarList() {
+      var that = this;
+      this.$http.post("operatorReport/listVehicle", {
+        securityId: this.form.securityId }).
+      then(function (res) {
+        if (res.code == 100) {
+          // this.driverList=res.info
+          var list = res.info;
+          that.carList = [];
+          that.carStr = [];
+          list.forEach(function (item, index) {
+            that.carStr.push(item.licenseId);
+            that.carList.push(item);
+          });
         }
       });
     },
@@ -335,7 +421,44 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
           this.form.healthy = val.val;
           break;}
 
+    },
+    selectChange: function selectChange(val) {
+      // 选择司机
+      this.form.driverId = this.driverList[val.index].id;
+      this.form.driverName = val.newVal;
+      // console.log(val)
+    },
+    selectChangeCar: function selectChangeCar(val) {
+      // 车辆
+      this.form.vehicleId = this.carList[val.index].id;
+      this.form.vehicleCard = val.newVal;
+    },
+    openBus: function openBus() {
+      // 开启
+      console.log(this.form);
+      if (!this.form.driverId || !this.form.vehicleId) {
+        uni.showToast({
+          icon: "none",
+          title: "请选择司机和车辆" });
+
+      } else {
+        // 添加安全报告
+        this.$http.post("operatorReport/addBoardReport", this.form).then(function (res) {
+          if (res.code == 100) {
+            uni.showToast({
+              icon: "success",
+              title: "填写成功！" });
+
+            setTimeout(function () {
+              uni.navigateBack({});
+
+
+            }, 2000);
+          }
+        });
+      }
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
