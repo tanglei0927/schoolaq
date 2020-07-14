@@ -6,7 +6,7 @@
 			<view class="msgbox">
 				<view class="teacher" @click="goRouter()">
 					<image class="teachericon" src="../../static/img/sy_007.png" mode="widthFix"></image>
-					<text v-if="isLogin">{{form.name}}老师</text>
+					<text v-if="isLogin">{{form.name?form.name:''}}老师</text>
 					<text v-else>请登录</text>
 				</view>
 				<view class="weather">
@@ -33,7 +33,7 @@
 		<view class="bus_list" v-if="lineList.length>0">
 			<view class="box" v-for="(item,index) in lineList">
 				<view class="tits cl">
-					<text class="time">{{item.name}}</text>
+					<text class="time">{{item.name}}({{item.type==1?'早':'晚'}})</text>
 					<text>预计：{{item.expectNumber}}人</text>
 				</view>
 				<view class="status cl">
@@ -148,7 +148,10 @@
 			let userInfo=uni.getStorageSync("userInfo")
 			if(userInfo){
 				this.form=JSON.parse(userInfo)
+				this.isLogin=true
 			}else{
+				this.form={}
+				this.isLogin=false
 				uni.showToast({
 					icon:"none",
 					title:"您还没有登录，请先登录!"

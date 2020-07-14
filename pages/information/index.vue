@@ -18,7 +18,7 @@
 				</view>
 				<view class="textbox">
 					<h3>
-						<text>{{item.type==1?'家长投诉':(item.type==2?'请假':'回复')}}</text>
+						<text>{{item.type==1?'家长投诉':(item.type==2?'请假':(item.type==3?'回复':(item.type==4?'':'系统群发')))}}</text>
 						<text>{{item.createTime}}</text>
 					</h3>
 					<text>{{item.content}}</text>
@@ -50,7 +50,9 @@
 					'../../static/img/xxzx_002.png',//投诉  1
 					'../../static/img/xxzx_012.png',//请假  2
 					'../../static/img/xxzx_009.png',//回复  3
-					// '../../static/img/xxzx_003.png',//学校  2
+					'../../static/img/xxzx_011.png',
+					// '../../static/img/xxzx_011.png',
+					'../../static/img/xxzx_003.png',//学校  2
 				],
 				userInfo:{},
 				Msglist:[],

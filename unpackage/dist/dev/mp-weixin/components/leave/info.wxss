@@ -24,27 +24,27 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.info_page.data-v-714f1316 {
+.info_page.data-v-98adb4fe {
   padding: 0 30rpx;
   font-size: 28rpx;
 }
-.info_page .title.data-v-714f1316 {
+.info_page .title.data-v-98adb4fe {
   text-align: center;
   line-height: 85rpx;
   font-size: 36rpx;
   font-weight: bold;
 }
-.info_page > text.data-v-714f1316 {
+.info_page > text.data-v-98adb4fe {
   color: #ccc;
   line-height: 54rpx;
 }
-.info_page .msg.data-v-714f1316 {
+.info_page .msg.data-v-98adb4fe {
   line-height: 58rpx;
 }
-button.data-v-714f1316:after {
+button.data-v-98adb4fe:after {
   border: 0;
 }
-button.data-v-714f1316 {
+button.data-v-98adb4fe {
   width: 100%;
   position: absolute;
   bottom: 0;

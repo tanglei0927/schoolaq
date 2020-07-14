@@ -3,42 +3,76 @@
 		<view class="cl">
 			<text class="txt">头像</text>
 			<view class="touxiang">
-				<image src="../../static/logo.png" mode="widthFix"></image>
+				<image :src="imgurl+'file/readFile/'+form.photo" mode="widthFix"></image>
 			</view>
 		</view>
 		<view class="cl">
 			<text>姓名</text>
-			<text>是是是</text>
+			<text>{{form.name}}</text>
 		</view>
 		<view class="cl">
 			<text>性别</text>
-			<text>男</text>
+			<text>{{form.sex==1?'男':'女'}}</text>
 		</view>
 		<view class="cl">
 			<text>身份证号</text>
-			<text>422525415584584565</text>
+			<text>{{form.idCard}}</text>
 		</view>
 		<view class="cl">
 			<text>出生日期</text>
-			<text>1990-01-01</text>
+			<text>{{form.birthday}}</text>
 		</view>
 		<view class="cl">
 			<text>文化程度</text>
-			<text>本科</text>
+			<text>{{form.education}}</text>
 		</view>
 		<view class="cl">
 			<text>负责学校</text>
-			<text>武汉光谷第二小学</text>
+			<text>{{form.schoolName}}</text>
 		</view>
 		<view class="cl">
 			<text>职位</text>
 			<text>安全员</text>
 		</view>
-		<button type="primary">退出登录</button>
+		<button type="primary" @click="logOut()">退出登录</button>
 	</view>
 </template>
 
 <script>
+	export default{
+		data(){
+			return{
+				form:{},
+				userInfo:{},
+				imgurl:''
+			}
+		},
+		onLoad(){
+			let userInfo=uni.getStorageSync('userInfo')
+			this.userInfo=JSON.parse(userInfo)
+			this.init()
+			this.imgurl=this.$imgurl
+		},
+		methods:{
+			init(){
+				this.$http.post('mgSecurity/detail',{
+					id:this.userInfo.id
+				}).then(res=>{
+					if(res.code==100){
+						this.form=res.info
+					}
+				})
+			},
+			logOut(){
+				uni.removeStorageSync('userInfo')
+				setTimeout(()=>{
+					uni.navigateTo({
+						url:"../../pages/my/login"
+					})
+				})
+			},
+		}
+	}
 </script>
 
 <style lang="scss" scoped>

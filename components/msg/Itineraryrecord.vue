@@ -23,7 +23,7 @@
 					</view>
 					<view class="times">
 						<text>出发：{{item.startTime}}</text>
-						<text>到达：{{item.endTime}}</text>
+						<text>到达：{{item.endTime?item.endTime:''}}</text>
 					</view>
 					<image src="../../static/img/left.png" mode="widthFix"></image>
 					<view class="businfo cl">

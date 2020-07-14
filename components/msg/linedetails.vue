@@ -34,7 +34,7 @@
 			</view>
 			<view class="box cl">
 				<view v-for="(item,index) in form.childrenVos" :class="item.isTake==1?'checktx tx':'tx'" @click="lookDetails(item)" v-if="isAll?(item.isTake==0):true">					
-					<image :src="$imgurl+'eaOss/download/'+item.photo" mode="widthFix"></image>
+					<image :src="imgurl+'eaOss/download/'+item.photo" mode="widthFix"></image>
 				</view>				
 			</view>
 		</view>
@@ -43,24 +43,24 @@
 		<view class="shadow" v-if="show">
 			<view class="box">
 				<view class="tx">
-					<image :src="$imgurl+'eaOss/download/'+childPhoto" mode="widthFix"></image>
+					<image :src="imgurl+'eaOss/download/'+childPhoto" mode="widthFix"></image>
 				</view>
 				<view>
 					姓名：{{childInfo.childrenName}}
 				</view>
 				<view>班级：{{childInfo.grade}}年级{{childInfo.clazz}}班</view>
-				<view>上车时间：{{childInfo.boardTime}}</view>
-				<view>下车时间：{{childInfo.takeTime}}</view>
+				<view>上车时间：{{childInfo.boardTime?childInfo.boardTime:''}}</view>
+				<view>下车时间：{{childInfo.takeTime?childInfo.takeTime:''}}</view>
 				<!-- <view>
 					<text>是否听话：</text>
 					<switch checked="true" @change="changeSwitch" />
 				</view> -->
 				<view>
 					<radio-group @change="radioChange" v-model="childInfo.status">
-						<label class="radio"><radio :value="0" checked="true" />没问题</label>
-						<label class="radio"><radio :value="1" checked="true" />打闹离座</label>
-						<label class="radio"><radio :value="2" />危品携带</label>
-						<label class="radio"><radio :value="3" />其他</label>
+						<label class="radio"><radio :value="0" :checked="childInfo.status==0?true:false" />没问题</label>
+						<label class="radio"><radio :value="1" :checked="childInfo.status==1?true:false" />打闹离座</label>
+						<label class="radio"><radio :value="2" :checked="childInfo.status==2?true:false" />危品携带</label>
+						<label class="radio"><radio :value="3" :checked="childInfo.status==3?true:false" />其他</label>
 					</radio-group>
 				</view>
 				<p>其他说明：</p>
@@ -80,12 +80,14 @@
 				form:{},
 				isAll:false,
 				childInfo:{},
-				childPhoto:''
+				childPhoto:'',
+				imgurl:''
 			}
 		},
 		onLoad(e){
 			this.id=e.id
 			this.getInfo()
+			this.imgurl=this.$imgurl
 		},
 		methods:{
 			switch2Change(val){
@@ -142,6 +144,9 @@
 						this.show=true
 						this.childInfo=res.info
 						this.childPhoto=item.photo
+						if(!this.childInfo.status){
+							this.childInfo.status=0
+						}
 					}
 				})
 			},
@@ -308,6 +313,7 @@
 				border-radius: 50%;
 				overflow: hidden;
 				margin-bottom: 30rpx;
+				border:1px solid #ccc;
 			}
 			
 			image{

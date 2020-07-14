@@ -3,6 +3,7 @@
 		<view class="">
 			<view class="tit">
 				车况
+				<text>({{form.vehicleCard?form.vehicleCard:''}})</text>
 			</view>
 		</view>
 		<view class="cl">
@@ -78,6 +79,7 @@
 		<view class="" style="margin-top: 20rpx;">
 			<view class="tit">
 				司机安全
+				<text>({{form.driverName?form.driverName:''}})</text>
 			</view>
 		</view>
 		<view class="cl">
@@ -250,6 +252,13 @@
 	}
 	button{
 		background: #FF6C00;
+	}
+	.tit{
+		text{
+			padding: 0 10rpx;
+			color: #666;
+			margin-left: 20rpx;
+		}
 	}
 	.shadow{
 		position:fixed;

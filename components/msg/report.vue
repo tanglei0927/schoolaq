@@ -121,7 +121,7 @@
 				this.show=false
 			},
 			submitInfo(){
-				this.$http.post("operatorReport/addOperationReport").then(res=>{
+				this.$http.post("operatorReport/addOperationReport",this.form).then(res=>{
 					if(res.code==100){
 						uni.showToast({
 							icon:"success",

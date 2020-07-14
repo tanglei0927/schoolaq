@@ -1,5 +1,5 @@
-const baseUrl='http://192.168.0.108:3326/'
-// const baseUrl='http://47.111.141.24/api/'
+// const baseUrl='http://192.168.0.111:3326/'
+const baseUrl='http://zhixiang.runfkj.com/'
 // const baseUrl='http://192.168.0.125/api/'
 
 const http={}

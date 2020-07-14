@@ -24,24 +24,24 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.userinfopage.data-v-33d41957 {
+.userinfopage.data-v-47f33d02 {
   padding: 0 20rpx;
   background: #fff;
   padding-bottom: 120rpx;
 }
-.userinfopage > view.data-v-33d41957 {
+.userinfopage > view.data-v-47f33d02 {
   padding: 40rpx 0;
   border-bottom: 1px solid #ccc;
 }
-.userinfopage > view text.data-v-33d41957:first-child {
+.userinfopage > view text.data-v-47f33d02:first-child {
   float: left;
   color: #ccc;
   width: 220rpx;
 }
-.userinfopage > view .txt.data-v-33d41957 {
+.userinfopage > view .txt.data-v-47f33d02 {
   line-height: 125rpx;
 }
-.userinfopage > view .touxiang.data-v-33d41957 {
+.userinfopage > view .touxiang.data-v-47f33d02 {
   float: left;
   width: 125rpx;
   height: 125rpx;
@@ -50,10 +50,10 @@
   border: 2px solid #fff;
   box-shadow: 0px 0px 10px 3px #ccc;
 }
-.userinfopage > view .touxiang image.data-v-33d41957 {
+.userinfopage > view .touxiang image.data-v-47f33d02 {
   width: 100%;
 }
-button.data-v-33d41957 {
+button.data-v-47f33d02 {
   background: #FF6C00;
   position: fixed;
   bottom: 0;

@@ -1,7 +1,7 @@
 <template>
 	<view class="info_page">
 		<view class="title">
-			请假详情
+			详情
 		</view>
 		<text>{{details.createTime}}</text>
 		<view class="msg">

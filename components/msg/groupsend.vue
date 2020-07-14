@@ -9,7 +9,7 @@
 				<text>选择接收群体</text>
 				<view class="">					
 					<xfl-select
-						:list="list1"
+						:list="lineStrlist"
 						:clearable="false"
 						:showItemNum="5" 
 						:listShow="false"
@@ -39,7 +39,7 @@
 		},
 		data(){
 			return{
-				list1:['光谷大道吴家湾','光谷大道金融港','光谷大三李成','光棍大道关南村',"光谷大道国际花园",'光谷大道凌家山','光谷大道现代世贸中心','民族大道光谷广场'],
+				list1:[],
 				selectValue:"",
 				lineStrlist:[],
 				lineList:[],
@@ -50,6 +50,7 @@
 		},
 		onLoad(e){
 			this.id=e.id
+			this.getLines()
 		},
 		methods:{
 			getLines(){
@@ -58,10 +59,15 @@
 				}).then(res=>{
 					if(res.code==100){
 						let list=res.info
+						this.lineList=[]
+						this.lineStrlist=[]
 						list.forEach((item,index)=>{
-							this.lineList[index]=item
-							this.lineStrlist[item]=item.name
+							this.lineList.push(item)
+							this.lineStrlist.push(item.name)
 						})
+						this.selectValue=this.lineStrlist[0]
+						this.lineId=this.lineList[0].lineId
+						// this.getSite()
 					}
 				})
 			},
@@ -69,12 +75,15 @@
 				console.log(val)
 				let index=val.index
 				this.lineId=this.lineList[index].id
-				this.getSite()
+				// this.getSite()
 			},
 			getSite(){
 				// 获取线路站点
+				
 			},
 			isOk(){
+				console.log(this.content)
+				console.log(this.lineId)
 				if(!this.content){
 					uni.showToast({
 						icon:"none",

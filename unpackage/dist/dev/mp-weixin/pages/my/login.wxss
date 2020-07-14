@@ -24,23 +24,23 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.login_page.data-v-51e82bca {
+.login_page.data-v-ba7da882 {
   height: 100%;
   background: #fff;
 }
-.login_page ._h3.data-v-51e82bca {
+.login_page ._h3.data-v-ba7da882 {
   padding: 50rpx 20rpx 20rpx 20rpx;
   background: -webkit-linear-gradient(#FF6C00, #fff);
   background: linear-gradient(#FF6C00, #fff);
   font-size: 50rpx;
 }
-.login_page .inputbox.data-v-51e82bca {
+.login_page .inputbox.data-v-ba7da882 {
   padding: 40rpx 0rpx;
   margin: auto;
   width: 95%;
   border-bottom: 1px solid #ccc;
 }
-.login_page button.data-v-51e82bca {
+.login_page button.data-v-ba7da882 {
   width: 95%;
   border-radius: 80rpx;
   background: #FF6C00;

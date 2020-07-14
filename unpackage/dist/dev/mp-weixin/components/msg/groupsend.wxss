@@ -24,14 +24,14 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.sendbox .msgbox.data-v-79bf13ce {
+.sendbox .msgbox.data-v-32e5c7ce {
   padding: 20rpx;
   margin-bottom: 20rpx;
 }
-.sendbox > view.data-v-79bf13ce {
+.sendbox > view.data-v-32e5c7ce {
   background: #FFFFFF;
 }
-.sendbox textarea.data-v-79bf13ce {
+.sendbox textarea.data-v-32e5c7ce {
   height: 300rpx;
   width: 100%;
   border: 1px solid #CCCCCC;
@@ -40,30 +40,30 @@
   padding: 10rpx;
   box-sizing: border-box;
 }
-.groupbox.data-v-79bf13ce {
+.groupbox.data-v-32e5c7ce {
   padding-top: 20rpx;
 }
-.groupbox .tit.data-v-79bf13ce {
+.groupbox .tit.data-v-32e5c7ce {
   margin-left: 20rpx;
   margin-bottom: 20rpx;
   height: inherit;
   border: 0;
   padding-left: 0;
 }
-.groupbox .tit text.data-v-79bf13ce {
+.groupbox .tit text.data-v-32e5c7ce {
   padding-left: 30rpx;
   border-left: 2px solid #FF6C00;
 }
-.groupbox .tit view.data-v-79bf13ce {
+.groupbox .tit view.data-v-32e5c7ce {
   display: inline-block;
   width: 400rpx;
   margin-left: 70rpx;
 }
-button.data-v-79bf13ce {
+button.data-v-32e5c7ce {
   background: #FF6C00;
   color: #fff;
 }
-button.data-v-79bf13ce:after {
+button.data-v-32e5c7ce:after {
   border: 0;
 }
 

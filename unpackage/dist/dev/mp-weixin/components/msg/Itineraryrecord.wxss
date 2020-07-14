@@ -24,15 +24,15 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.jilu.data-v-0891c28e {
+.jilu.data-v-101e3883 {
   padding: 20rpx;
   position: relative;
   padding-bottom: 100rpx;
 }
-.jilu ._h3.data-v-0891c28e {
+.jilu ._h3.data-v-101e3883 {
   line-height: 100rpx;
 }
-.jilu .box.data-v-0891c28e {
+.jilu .box.data-v-101e3883 {
   background: #fff;
   padding: 20rpx 0;
   border-radius: 10rpx;
@@ -41,10 +41,10 @@
   position: relative;
   font-size: 30rpx;
 }
-.jilu .box .tit.data-v-0891c28e {
+.jilu .box .tit.data-v-101e3883 {
   margin-left: 20rpx;
 }
-.jilu .box .times.data-v-0891c28e {
+.jilu .box .times.data-v-101e3883 {
   position: absolute;
   right: 20rpx;
   top: 20rpx;
@@ -52,13 +52,13 @@
   padding: 5rpx 0rpx;
   border-radius: 30rpx;
 }
-.jilu .box .times text.data-v-0891c28e {
+.jilu .box .times text.data-v-101e3883 {
   margin: 0 20rpx;
 }
-.jilu .box > image.data-v-0891c28e {
+.jilu .box > image.data-v-101e3883 {
   width: 100%;
 }
-.jilu button.data-v-0891c28e {
+.jilu button.data-v-101e3883 {
   background: #FF6C00;
   border-radius: 0;
   position: fixed;
@@ -66,7 +66,7 @@
   left: 0;
   width: 100%;
 }
-.businfo > view.data-v-0891c28e {
+.businfo > view.data-v-101e3883 {
   float: left;
   width: 50%;
   font-size: 28rpx;
@@ -74,11 +74,11 @@
   padding: 0 29rpx;
   box-sizing: border-box;
 }
-.businfo > view image.data-v-0891c28e {
+.businfo > view image.data-v-101e3883 {
   width: 80rpx;
   margin-right: 20rpx;
 }
-.nonebox.data-v-0891c28e {
+.nonebox.data-v-101e3883 {
   margin: auto;
   padding: 30rpx 0;
   text-align: center;

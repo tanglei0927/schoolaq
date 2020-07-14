@@ -24,36 +24,36 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.box.data-v-6be591ec {
+.box.data-v-52f21bf5 {
   width: 750rpx;
   overflow-y: hidden;
   overflow-x: scroll;
 }
-.grouplist.data-v-6be591ec {
+.grouplist.data-v-52f21bf5 {
   margin-top: 30rpx;
 }
-.grouplist .li.data-v-6be591ec:first-child {
+.grouplist .li.data-v-52f21bf5:first-child {
   width: 30rpx;
   padding-left: 15rpx;
 }
-.grouplist .li:first-child .li.data-v-6be591ec:last-child {
+.grouplist .li:first-child .li.data-v-52f21bf5:last-child {
   padding-right: 15rpx;
 }
-.grouplist .li.data-v-6be591ec {
+.grouplist .li.data-v-52f21bf5 {
   float: left;
   position: relative;
   border-top: 30rpx solid #75dafb;
   width: 150rpx;
   height: 500rpx;
 }
-.grouplist .li > view.data-v-6be591ec {
+.grouplist .li > view.data-v-52f21bf5 {
   position: absolute;
   right: 15rpx;
   top: -38rpx;
   width: 20rpx;
   z-index: 1000;
 }
-.grouplist .li > view ._i.data-v-6be591ec {
+.grouplist .li > view ._i.data-v-52f21bf5 {
   display: inline-block;
   width: 30rpx;
   height: 30rpx;
@@ -61,12 +61,12 @@
   border: 1px solid #ccc;
   background: #fff;
 }
-.grouplist .li > view .check.data-v-6be591ec {
+.grouplist .li > view .check.data-v-52f21bf5 {
   border-color: #FF6C00;
   text-align: center;
   position: relative;
 }
-.grouplist .li > view .check ._em.data-v-6be591ec {
+.grouplist .li > view .check ._em.data-v-52f21bf5 {
   position: absolute;
   top: 0;
   left: 0;
@@ -78,7 +78,7 @@
   background: #FF6C00;
   border-radius: 50%;
 }
-.grouplist .li > view .check + text.data-v-6be591ec {
+.grouplist .li > view .check + text.data-v-52f21bf5 {
   color: #FF6C00;
 }
 
