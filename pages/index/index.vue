@@ -10,21 +10,22 @@
 					<text v-else>请登录</text>
 				</view>
 				<view class="weather">
-					<view class="tit">
+					<!-- <view class="tit">
 						<text class="num">10℃</text>
 						<text class="msg">多云转晴</text>
-					</view>
+					</view> -->
 					<view class="times">
-						<view>
-							2020年1月13日
+						<view class="num">
+							{{date}} {{day}}
 						</view>
-						<view>
-							冬月三十 周二
+						<view class="msg">
+							{{datenl}}
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
+		<view class="sxts">~下拉可刷新~</view>
 		<view class="xltit" @click="shadow=true">
 			<text>选择线路</text>
 			<image src="../../static/img/wd_018.png" mode="widthFix"></image>
@@ -37,8 +38,9 @@
 					<text>预计：{{item.expectNumber}}人</text>
 				</view>
 				<view class="status cl">
-					<image class="bjimg" src="../../static/img/right.png" mode="widthFix"></image>
-					<image class="car" :style="'left:'+widthList[index]+'px'" @touchend="touchEnd(item)" @click="lookDetail(item)" @touchmove="touchStart($event,index)" src="../../static/img/sy_006.png" mode="widthFix"></image>
+					<image :class="item.status==1?'bjimg':'norun bjimg'" src="../../static/img/right.png" mode="widthFix"></image>
+					 <!-- @touchend="touchEnd(item)" @touchmove="touchStart($event,index)" -->
+					<image :class="item.status==1?'runcar car':'car'" :style="'left:'+widthList[index]+'px'" @click="touchEnd(item)"  src="../../static/img/sy_006.png" mode="widthFix"></image>
 				</view>
 				<view class="businfo cl">
 					<view>
@@ -50,29 +52,7 @@
 						<text>{{item.endSiteName}}</text>
 					</view>
 				</view>
-			</view>
-			
-		<!-- 	<view class="box">
-				<view class="tits cl">
-					<text class="time">平一</text>
-					<text>预计：28人</text>
-				</view>
-				<view class="status cl">
-					<image class="bjimg" src="../../static/img/left.png" mode="widthFix"></image>
-					<image class="car" style="right: ;" src="../../static/img/sy_006left.png" mode="widthFix"></image>
-				</view>
-				<view class="businfo cl">
-					<view>
-						<image src="../../static/img/sy_004.png" mode="widthFix"></image>
-						<text>现代世贸中心</text>
-					</view>
-					<view>
-						<image src="../../static/img/sy_005.png" mode="widthFix"></image>
-						<text>现代世贸中心</text>
-					</view>
-				</view>
-			</view>	 -->		
-			
+			</view>		
 		</view>
 		<view class="linenone" v-else>
 			<image src="../../static/img/xxzx_003.png" mode="widthFix"></image>
@@ -83,7 +63,7 @@
 		<view class="footerbox">
 			<image src="../../static/img/sy_002.png" mode="widthFix" @click="goInfo(2)"></image>
 			<image src="../../static/img/sy_003.png" mode="widthFix" @click="goInfo(1)"></image>
-			<image src="../../static/img/sy_001.png" mode="widthFix"></image>
+			<!-- <image src="../../static/img/sy_001.png" mode="widthFix"></image> -->
 		</view>
 		<!-- 选择线路弹框 -->
 		<view class="shadow" v-show="shadow">
@@ -111,6 +91,7 @@
 </template>
 
 <script>
+	import showCalendar from "../../components/unitls/getday.js"
 	export default {		
 		data() {
 			return {
@@ -127,7 +108,12 @@
 				searchStr:"",
 				searchList:[],//搜索出来的线路列表
 				CheckNum:0,
-				widthList:[0]
+				widthList:[0],
+				xlFlag:false,
+				date:'',
+				day:null,
+				datenl:'',
+				dayList:['周日','周一','周二','周三','周四','周五','周六']
 			}
 		},
 		watch:{
@@ -143,6 +129,16 @@
 			uni.authorize({
 				scope:'userInfo'
 			})
+			let date=new Date()
+			let dateStr=""
+			dateStr=date.getFullYear()+"年"
+			dateStr+=(date.getMonth()+1)+"月"
+			dateStr+=date.getDate()+"日"
+			this.date=dateStr
+			let day=null
+			day=date.getDay()
+			this.day=this.dayList[day]
+			this.datenl=showCalendar()
 		},
 		onShow(){
 			let userInfo=uni.getStorageSync("userInfo")
@@ -166,19 +162,7 @@
 		},
 		methods: {
 			getuserinfo(){
-				// uni.getUserInfo({
-				// 	success:(res)=>{
-				// 		console.log(res)
-				// 	},
-				// 	fail:(err)=>{
-				// 		console.log(err)
-				// 	}
-				// })
-				// wx.login({
-				// 	success:(res)=>{
-				// 		console.log(res)
-				// 	}
-				// }) 
+				
 			},
 			goRouter(){
 				if(this.isLogin){
@@ -264,6 +248,7 @@
 			},
 			// 获取安全员默认的线路
 			getLineQuery(){
+				this.xlFlag=false
 				this.$http.post("sLine/securityLineQuery",{
 					id:this.form.id
 				}).then(res=>{
@@ -273,6 +258,10 @@
 						list.forEach((item,index)=>{
 							this.widthList[index]=0
 						})
+						setTimeout(()=>{
+							this.xlFlag=true
+						},2000)
+						uni.stopPullDownRefresh()
 					}
 				})				
 			},
@@ -311,6 +300,20 @@
 					}
 				})
 			},
+		},
+		onPullDownRefresh:function(){
+			let that=this
+			if(this.xlFlag){
+				uni.startPullDownRefresh({
+					success:()=>{						
+						that.getLineQuery()
+					}
+				})
+			}else{
+				console.log("取消下拉刷新")
+				uni.stopPullDownRefresh()
+			}
+			
 		}
 	}
 </script>
@@ -394,13 +397,20 @@
 				.bjimg{
 					width: 100%;
 				}
-				
+				.norun{
+					filter: grayscale(1);
+				}
 			}
 			.car{
 				width: 150rpx;
 				position: absolute;
 				top: -15rpx;
 				left: 0;
+			}
+			.runcar{
+				// left: 60px !important;
+				right: 0;
+				margin: auto;
 			}
 			.businfo{
 				>view{
@@ -435,8 +445,8 @@
 		background: #fff;
 		padding: 40rpx 0;
 		image{
-			width: 210rpx;
-			margin-left: 30rpx;
+			width: 250rpx;
+			margin-left: 83rpx;
 		}
 	}
 	.shadow{
@@ -518,5 +528,24 @@
 				}
 			}
 		}
+	}
+	.headers .weather{
+		.num{
+			font-size: 16px !important;
+			line-height: 60rpx;
+		}
+		.msg{
+			font-size: 14px;
+			color: #FF6C00;
+			margin-bottom: 10rpx;
+		}
+		.times{
+			border-bottom: 1px solid #ccc;
+		}
+	}
+	.sxts{
+		color: #ccc;
+		text-align: center;
+		font-size: 12px;
 	}
 </style>

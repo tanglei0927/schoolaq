@@ -5,7 +5,7 @@
 			<input type="text"v-model="form.account"  placeholder="请输入账号" />
 		</view>
 		<view class="inputbox">
-			<input type="text" v-model="form.password" placeholder="请输入密码" />
+			<input type="password" v-model="form.password" placeholder="请输入密码" />
 		</view>
 		<button type="primary" @click="login()">登录</button>
 	</view>
@@ -48,6 +48,11 @@
 									url:"../index/index"
 								})
 							},2000)
+						}else if(res.code==250){
+							uni.showToast({
+								icon:'none',
+								title:res.msg
+							})
 						}
 					})
 				}
