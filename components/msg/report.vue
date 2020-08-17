@@ -1,5 +1,26 @@
 <template>
 	<view class="report">
+		<!-- <view class="">
+			<view class="tit">
+				防疫安全
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">车辆是否消毒</text>
+			<Select :status="form.disinfect" :index="16" @changeVal="changeVal" />
+		</view>
+		<view class="cl">
+			<text class="txt">安全员体温</text>
+			<Select :status="form.securityTemperature" :index="17" @changeVal="changeVal" />
+		</view>
+		<view class="cl">
+			<text class="txt">司机体温</text>
+			<Select :status="form.driverTemperature" :index="18" @changeVal="changeVal" />
+		</view>
+		<view class="cl">
+			<text class="txt">学生体温是否正常</text>
+			<Select :status="form.childrenTemperature" :index="19" @changeVal="changeVal" />
+		</view> -->
 		<view class="">
 			<view class="tit">
 				司机行为监督
@@ -30,14 +51,14 @@
 			<text class="txt">开车过程中抽烟</text>
 			<Select :status="form.drivingSmoking" :index="6" @changeVal="changeVal" />
 		</view>
-		<button type="primary" @click="submitInfo()">结束行程</button>
+		<button type="primary" @click="submitInfo()">提交运行报告</button>
 		
 		<!-- 通知 -->
 		<view class="shadow" v-if="show">
 			<view class="box">
 				<h3>通知</h3>
 				<view>发车时间：{{info.startTime?info.startTime:''}}</view>
-				<view>到达时间：{{info.endTime?info.endTime:''}}</view>
+				<!-- <view>到达时间：{{info.endTime?info.endTime:''}}</view> -->
 				<view>上车：{{info.alreadyNumber?info.alreadyNumber:0}}人</view>
 				<view>下车：{{info.takeNumber?info.takeNumber:0}}人</view>
 				<view>滞留：{{info.inNumber?info.inNumber:0}}人</view>
@@ -66,6 +87,10 @@
 					drasticDriving:0,//激烈行驶
 					drivingCalling:0,//打电话
 					drivingSmoking:0,//抽烟
+					// disinfect:0,
+					// securityTemperature:0,
+					// driverTemperature:0,
+					// childrenTemperature:0
 				},
 				info:{}
 			}			
@@ -100,6 +125,18 @@
 					case 6:
 						this.form.drivingSmoking=val.val
 						break;
+					case 16:
+						this.form.disinfect=val.val
+						break;
+					case 17:
+						this.form.securityTemperature=val.val
+						break;
+					case 18:
+						this.form.driverTemprtature=val.val
+						break;
+					case 19:
+						this.form.childrenTemperature=val.val
+						break
 				}
 			},
 			getInfo(){

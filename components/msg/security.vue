@@ -113,7 +113,24 @@
 			<text class="txt">健康情况检查</text>
 			<Select :status="form.healthy"  :index="15" @changeVal="changeVal" />
 		</view>
-		<button type="primary" @click="openBus()">开启</button>
+		<!-- <view class="healthbox cl" style="margin-top: 20rpx;">
+			<view class="tit">
+				防疫安全
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">车辆是否消毒</text>
+			<Select :status="form.disinfect" :index="16" @changeVal="changeVal" />
+		</view>
+		<view class="cl">
+			<text class="txt">司机体温</text>
+			<Select :status="form.driverTemperature" :index="18" @changeVal="changeVal" />
+		</view>
+		<view class="cl">
+			<text class="txt">安全员体温</text>
+			<Select :status="form.securityTemperature" :index="17" @changeVal="changeVal" />
+		</view> -->
+		<button type="primary" @click="openBus()">提交</button>
 		
 		<!-- 通知 -->
 		<view class="shadow" v-show="false">
@@ -168,6 +185,9 @@
 					driverId:null,//司机id
 					driverName:null,//司机名称
 					lineId:null,//线路id
+					// disinfect:0,
+					// securityTemperature:0,
+					// driverTemperature:0,
 				}
 			}			
 		},
@@ -288,6 +308,15 @@
 					case 15:
 						this.form.healthy=val.val
 						break;
+					case 16:
+						this.form.disinfect=val.val
+						break;
+					case 17:
+						this.form.securityTemperature=val.val
+						break;
+					case 18:
+						this.form.driverTemprtature=val.val
+						break;
 				}				
 			},
 			selectChange(val){
@@ -318,8 +347,8 @@
 								title:"填写成功！"
 							})
 							setTimeout(()=>{
-								uni.navigateBack({
-									
+								uni.navigateTo({
+									url:"linedetails?id="+this.form.lineId
 								})
 							},2000)
 						}

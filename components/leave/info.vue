@@ -8,6 +8,9 @@
 			<!-- 您管理的线路xxx(起点)--yy(终点)，有xxx(孩子名)请假，共提交请假z天，请假y车次！该车次未来上车人数为gg（实际减1）,此信息不作为最终确定人数。 -->
 			{{details.content}}
 		</view>
+		<view class="imgs">
+			<image v-for="(item,index) in photos" :src="item" @click="lookImg(item)" mode="widthFix"></image>
+		</view>
 		<button @click="goBack()">确认</button>
 	</view>
 </template>
@@ -18,7 +21,8 @@
 			return{
 				id:null,
 				details:{},
-				content:""
+				content:"",
+				photos:[]
 			}
 		},
 		onLoad(e){
@@ -39,12 +43,25 @@
 						}else{
 							this.content=""
 						}
+						let imgList=this.details.photos
+						this.photos=[]
+						if(imgList.length>0){
+							imgList.forEach((item,index)=>{
+								this.photos.push(this.$imgurl+'file/downloadOss/'+item)
+							})
+						}							
 					}
 				})
 			},
 			goBack(){
 				uni.navigateBack({
 					
+				})
+			},
+			lookImg(url){
+				uni.previewImage({
+					current:url,
+					urls:this.photos
 				})
 			}
 			
@@ -81,5 +98,11 @@
 		border-radius:0;
 		background: #ff6d00;
 		color: #fff;
+	}
+	.imgs{
+		image{
+			width: 200rpx;
+			margin: 20rpx;
+		}
 	}
 </style>

@@ -32,7 +32,7 @@
 				iconList:[
 					'../../static/img/weide001.png',//未读
 					'../../static/img/xxzx_006.png',//已读，未回复
-					'../../static/img/xxzx_009.png',//已回复
+					'../../static/img/xxzx_007.png',//已回复
 				]
 			}
 		},

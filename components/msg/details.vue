@@ -127,7 +127,7 @@
 		</view>
 		<view class="" style="margin-top: 20rpx;">
 			<view class="tit">
-				司机行为监督
+				司机行为监督({{form.driverName}})
 			</view>
 		</view>
 		<view class="cl">
@@ -166,8 +166,54 @@
 				{{action.drivingSmoking==1?'不合格':'合格'}}
 			</view>
 		</view>
-		
-		<button type="primary">确认</button>
+		<!-- <view class="" style="margin-top: 20rpx;">
+			<view class="tit">
+				防疫安全
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">消杀情况</text>
+			<view class="">
+				{{form.disinfect==1?'不合格':'合格'}}
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">司机体温</text>
+			<view class="">
+				{{form.driverTemperature==1?'不合格':'合格'}}
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">安全员体温</text>
+			<view class="">
+				{{form.securityTemperature==1?'不合格':'合格'}}
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">运行时消杀情况</text>
+			<view class="">
+				{{action.disinfect==1?'不合格':'合格'}}
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">运行时司机体温</text>
+			<view class="">
+				{{action.driverTemperature==1?'不合格':'合格'}}
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">运行时安全员体温</text>
+			<view class="">
+				{{action.securityTemperature==1?'不合格':'合格'}}
+			</view>
+		</view>
+		<view class="cl">
+			<text class="txt">学生体温</text>
+			<view class="">
+				{{action.childrenTemperature==1?'不合格':'合格'}}
+			</view>
+		</view> -->
+		<button type="primary" @click="goBack()">确认</button>
 		
 		<!-- 通知 -->
 		<view class="shadow" v-show="false">
@@ -178,7 +224,7 @@
 				<view>上车28人</view>
 				<view>下车：28人</view>
 				<view>滞留：0人</view>
-				<button type="primary">确认</button>
+				<button type="primary" >确认</button>
 			</view>
 		</view>
 	</view>
@@ -221,6 +267,11 @@
 					}
 				})
 			},
+			goBack(){
+				uni.navigateBack({
+					
+				})
+			}
 		}
 	}
 </script>
