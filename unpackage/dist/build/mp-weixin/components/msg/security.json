@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "线路详情",
+  "usingComponents": {
+    "select": "/components/common/select",
+    "xfl-select": "/components/common/xfl-select/xfl-select"
+  }
+}

@@ -103,11 +103,19 @@
 .bus_list .box .status .bjimg.data-v-57280228 {
   width: 100%;
 }
+.bus_list .box .status .norun.data-v-57280228 {
+  -webkit-filter: grayscale(1);
+          filter: grayscale(1);
+}
 .bus_list .box .car.data-v-57280228 {
   width: 150rpx;
   position: absolute;
   top: -15rpx;
   left: 0;
+}
+.bus_list .box .runcar.data-v-57280228 {
+  right: 0;
+  margin: auto;
 }
 .bus_list .box .businfo > view.data-v-57280228 {
   float: left;
@@ -139,8 +147,8 @@
   padding: 40rpx 0;
 }
 .footerbox image.data-v-57280228 {
-  width: 210rpx;
-  margin-left: 30rpx;
+  width: 250rpx;
+  margin-left: 83rpx;
 }
 .shadow.data-v-57280228 {
   position: fixed;
@@ -216,5 +224,22 @@
 .shadow .box .nonebox view.data-v-57280228 {
   line-height: 60rpx;
   color: #ccc;
+}
+.headers .weather .num.data-v-57280228 {
+  font-size: 16px !important;
+  line-height: 60rpx;
+}
+.headers .weather .msg.data-v-57280228 {
+  font-size: 14px;
+  color: #FF6C00;
+  margin-bottom: 10rpx;
+}
+.headers .weather .times.data-v-57280228 {
+  border-bottom: 1px solid #ccc;
+}
+.sxts.data-v-57280228 {
+  color: #ccc;
+  text-align: center;
+  font-size: 12px;
 }
 

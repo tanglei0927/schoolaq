@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "安全报告",
+  "usingComponents": {
+    "select": "/components/common/select"
+  }
+}

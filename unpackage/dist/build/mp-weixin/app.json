@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/information/index",
+    "components/leave/index",
+    "components/leave/info",
+    "components/msg/groupsend",
+    "components/complaint/index",
+    "components/complaint/info",
+    "pages/my/login",
+    "components/msg/Itineraryrecord",
+    "components/msg/userinfo",
+    "components/msg/report",
+    "components/msg/linedetails",
+    "components/msg/security",
+    "components/msg/details"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#555",
+    "selectedColor": "#f88724",
+    "fontSize": "14px",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/information/index",
+        "text": "信息中心",
+        "iconPath": "static/img/sy_009.png",
+        "selectedIconPath": "static/img/sy_011.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/img/sy_010.png",
+        "selectedIconPath": "static/img/sy_008.png",
+        "text": "线路运行"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

@@ -78,21 +78,20 @@
   border-top: 1px solid #ccc;
   line-height: 80rpx;
 }
-.carbox .infos text.data-v-076a9456 {
-  float: left;
-}
 .carbox .infos switch.data-v-076a9456 {
-  float: left;
   margin-left: 40rpx;
 }
 .carbox .infos text.data-v-076a9456:nth-child(2) {
   float: right;
 }
-.footerbtn.data-v-076a9456 {
+.footerbtn.data-v-076a9456, .footerbtnnon.data-v-076a9456 {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
+}
+.footerbtnnon.data-v-076a9456 {
+  background-color: #C0C0C0;
 }
 .txbox.data-v-076a9456 {
   padding: 20rpx 10rpx;
@@ -155,6 +154,17 @@ button.data-v-076a9456 {
   margin-top: 100rpx;
   padding: 40rpx;
   line-height: 60rpx;
+  position: relative;
+}
+.shadow .box .gbbox.data-v-076a9456 {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  right: 10rpx;
+  top: 0;
+}
+.shadow .box .gbbox image.data-v-076a9456 {
+  width: 100%;
 }
 .shadow .box .tx.data-v-076a9456 {
   width: 126rpx;
