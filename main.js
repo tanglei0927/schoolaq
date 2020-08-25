@@ -7,8 +7,9 @@ import http from '@/components/unitls/http.js'
 Vue.prototype.$http=http
 import untils from '@/components/unitls/untils.js'
 Vue.prototype.$untils=untils
-Vue.prototype.$imgurl="https://request.zhixiangxiaoche.com/"
-// Vue.prototype.$imgurl="http://192.168.0.111:3326/"
+// Vue.prototype.$imgurl="https://request.zhixiangxiaoche.com/"
+Vue.prototype.$imgurl="http://192.168.0.115:3326/"
+// Vue.prototype.$imgurl="http://zhixiang.runfkj.com/"
 
 import "@/components/style/resetm.css"
 

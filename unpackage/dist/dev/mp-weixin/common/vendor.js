@@ -862,6 +862,11 @@ function initProperties(props) {var isBehavior = arguments.length > 1 && argumen
       type: String,
       value: '' };
 
+    // 用于字节跳动小程序模拟抽象节点
+    properties.generic = {
+      type: Object,
+      value: null };
+
     properties.vueSlots = { // 小程序不能直接定义 $slots 的 props，所以通过 vueSlots 转换到 $slots
       type: null,
       value: [],
@@ -1160,14 +1165,17 @@ function handleEvent(event) {var _this = this;
             }
             handler.once = true;
           }
-          ret.push(handler.apply(handlerCtx, processEventArgs(
+          var params = processEventArgs(
           _this.$vm,
           event,
           eventArray[1],
           eventArray[2],
           isCustom,
-          methodName)));
-
+          methodName) ||
+          [];
+          // 参数尾部增加原始事件对象用于复杂表达式内获取额外数据
+          // eslint-disable-next-line no-sparse-arrays
+          ret.push(handler.apply(handlerCtx, params.concat([,,,,,,,,,, event])));
         }
       });
     }
@@ -1721,15 +1729,15 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 11:
-/*!*******************************************************!*\
-  !*** E:/wuhan1901/schoolaq/components/unitls/http.js ***!
-  \*******************************************************/
+/*!******************************************************!*\
+  !*** E:/aasystem/schoolaq/components/unitls/http.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // const baseUrl='http://192.168.0.111:3326/' 
-var baseUrl = 'https://request.zhixiangxiaoche.com/';
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = 'http://192.168.0.115:3326/';
+// const baseUrl='https://request.zhixiangxiaoche.com/'
 // const baseUrl='http://192.168.0.125/api/'
 
 var http = {};
@@ -1742,11 +1750,11 @@ http.httpReq = function (url, data) {
     data: data,
     header: headers }).
   then(function (res) {
-    console.log('响应拦截');
+    // console.log('响应拦截')
     return res[1].data;
   }).catch(function (parmas) {
-    console.log('响应拦截2');
-    console.log(parmas);
+    // console.log('响应拦截2')
+    // console.log(parmas)
     uni.showToast({
       icon: 'none',
       title: JSON.stringify(parmas),
@@ -1766,7 +1774,6 @@ http.get = function (url, data) {
     userInfo = JSON.parse(userInfo);
     token = userInfo.token;
   }
-  // }
   data['token'] = token;
   return uni.request({
     url: baseUrl + url,
@@ -1825,9 +1832,9 @@ http;exports.default = _default;
 /***/ }),
 
 /***/ 12:
-/*!*********************************************************!*\
-  !*** E:/wuhan1901/schoolaq/components/unitls/untils.js ***!
-  \*********************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schoolaq/components/unitls/untils.js ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1847,9 +1854,9 @@ unitls;exports.default = _default;
 /***/ }),
 
 /***/ 13:
-/*!*********************************************************!*\
-  !*** E:/wuhan1901/schoolaq/components/style/resetm.css ***!
-  \*********************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schoolaq/components/style/resetm.css ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1860,9 +1867,9 @@ unitls;exports.default = _default;
 /***/ }),
 
 /***/ 149:
-/*!**********************************************************************!*\
-  !*** E:/wuhan1901/schoolaq/components/common/w-calendar/calendar.js ***!
-  \**********************************************************************/
+/*!*********************************************************************!*\
+  !*** E:/aasystem/schoolaq/components/common/w-calendar/calendar.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8341,7 +8348,7 @@ function internalMixin(Vue) {
   };
 
   Vue.prototype.__map = function(val, iteratee) {
-    //TODO 暂不考虑 string,number
+    //TODO 暂不考虑 string
     var ret, i, l, keys, key;
     if (Array.isArray(val)) {
       ret = new Array(val.length);
@@ -8355,6 +8362,13 @@ function internalMixin(Vue) {
       for (i = 0, l = keys.length; i < l; i++) {
         key = keys[i];
         ret[key] = iteratee(val[key], key, i);
+      }
+      return ret
+    } else if (typeof val === 'number') {
+      ret = new Array(val);
+      for (i = 0, l = val; i < l; i++) {
+        // 第一个参数暂时仍和小程序一致
+        ret[i] = iteratee(i, i);
       }
       return ret
     }
@@ -8454,9 +8468,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 20:
-/*!*********************************************************!*\
-  !*** E:/wuhan1901/schoolaq/components/unitls/getday.js ***!
-  \*********************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schoolaq/components/unitls/getday.js ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8629,9 +8643,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!****************************************!*\
-  !*** E:/wuhan1901/schoolaq/pages.json ***!
-  \****************************************/
+/*!***************************************!*\
+  !*** E:/aasystem/schoolaq/pages.json ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 

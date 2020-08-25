@@ -1,5 +1,5 @@
-// const baseUrl='http://192.168.0.111:3326/' 
-const baseUrl='https://request.zhixiangxiaoche.com/'
+const baseUrl='http://192.168.0.115:3326/' 
+// const baseUrl='https://request.zhixiangxiaoche.com/'
 // const baseUrl='http://192.168.0.125/api/'
 
 const http={}
@@ -12,11 +12,11 @@ http.httpReq=(url,data)=>{
 		data:data,
 		header:headers,		
 	}).then(res=>{
-		console.log('响应拦截')
+		// console.log('响应拦截')
 		return res[1].data
 	}).catch(parmas=>{
-		console.log('响应拦截2')
-		console.log(parmas)
+		// console.log('响应拦截2')
+		// console.log(parmas)
 		uni.showToast({
 			icon:'none',
 			title:JSON.stringify(parmas),
@@ -31,12 +31,11 @@ http.httpReq=(url,data)=>{
 
 http.get=(url,data)=>{
 	var token=''
-		var userInfo=uni.getStorageSync('userinfo')
-		if(userInfo){		
-			userInfo=JSON.parse(userInfo)
-			token=userInfo.token		
-		}
-	// }
+	var userInfo=uni.getStorageSync('userinfo')
+	if(userInfo){		
+		userInfo=JSON.parse(userInfo)
+		token=userInfo.token		
+	}
 	data['token']=token
 	return uni.request({
 		url:baseUrl+url,

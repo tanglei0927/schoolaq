@@ -5,35 +5,13 @@
 	},
 	"setting": {
 		"urlCheck": false,
-		"es6": false,
-		"enhance": false,
-		"postcss": true,
-		"preloadBackgroundData": false,
 		"minified": true,
-		"newFeature": false,
-		"coverView": true,
-		"nodeModules": false,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"uglifyFileName": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useIsolateContext": true,
-		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false
+		"es6": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "",
 	"appid": "wx142f9bf7a97f80f7",
-	"projectname": "智享校车安全员端",
+	"projectname": "%E6%99%BA%E4%BA%AB%E6%A0%A1%E8%BD%A6%E5%AE%89%E5%85%A8%E5%91%98%E7%AB%AF",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
