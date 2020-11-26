@@ -69,6 +69,10 @@ button.data-v-89aa7ee6 {
   height: 300rpx;
   box-sizing: border-box;
 }
+.box .redtxt.data-v-89aa7ee6 {
+  float: right;
+  color: red;
+}
 .tsimgs image.data-v-89aa7ee6 {
   width: 200rpx;
   margin: 16rpx;

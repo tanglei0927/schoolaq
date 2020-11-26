@@ -22,7 +22,7 @@
 		<view class="box">
 			<view class="tit">
 				投诉回复 
-				<text v-if="details.newsVoReply.examine">{{details.newsVoReply.examine==0?'审核不通过':(details.newsVoReply.examine==1?'审核通过':'审核中')}}</text>
+				<text class="redtxt" v-if="details.newsVoReply.examine||details.newsVoReply.examine==0">{{details.newsVoReply.examine==0?'审核不通过':(details.newsVoReply.examine==1?'审核通过':'审核中')}}</text>
 			</view>
 			<textarea value="" v-model="content" placeholder="请输入投诉回复内容" />
 		</view>
@@ -80,16 +80,20 @@
 							this.content=""
 						}
 						let imgList=this.details.photos
+						console.log(this.details)
 						this.photos=[]
-						if(imgList.length>0){
+						if(imgList&&imgList.length>0){
 							imgList.forEach((item,index)=>{
 								this.photos.push(this.imgurl+'file/downloadOss/'+item)
 							})
 						}
+						console.log(111111)
 						let imgList2=this.details.newsVoReply.photos
+						console.log(imgList2)
 						this.photos1=[]
 						if(imgList2.length>0){
 							imgList2.forEach((item,index)=>{
+								// this.photos1.push(item)
 								this.photos1.push(this.imgurl+'file/downloadOss/'+item)
 							})
 						}
@@ -100,7 +104,7 @@
 			reply(){
 				let url=""
 				let data={}
-				if(this.details.state==1||this.details.state==0){
+				if(!this.details.newsVoReply){
 					// 回复
 					url="sMessage/addReply"
 				}else{
@@ -310,6 +314,10 @@
 			margin-top: 20rpx;
 			height: 300rpx;
 			box-sizing: border-box;
+		}
+		.redtxt{
+			float: right;
+			color: red;
 		}
 	}
 	.tsimgs{

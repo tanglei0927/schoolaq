@@ -8,8 +8,8 @@
 				<view class="textbox">
 					<h3>
 						<view class="statusbox">
-							<image :src="iconList[item.state]" mode="widthFix"></image>
-							<text>{{item.state==0?'未读':(item.state==1?'未回复':'已回复')}}</text>
+							<image :src="item.state==0?iconList[0]:(item.state==3?iconList[2]:iconList[1])" mode="widthFix"></image>
+							<text>{{item.state==0?'未读':(item.state==3?'已回复':(item.state==2?'未通过':(item.state==4?'审核中':'未回复')))}}</text>
 						</view>
 						<text>投诉信息</text>
 						<text class="times">{{item.createTime}}</text>

@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var Select = function Select() {__webpack_require__.e(/*! require.ensure | components/common/select */ "components/common/select").then((function () {return resolve(__webpack_require__(/*! ../common/select.vue */ 152));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var xflSelect = function xflSelect() {__webpack_require__.e(/*! require.ensure | components/common/xfl-select/xfl-select */ "components/common/xfl-select/xfl-select").then((function () {return resolve(__webpack_require__(/*! ../common/xfl-select/xfl-select.vue */ 137));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var Select = function Select() {__webpack_require__.e(/*! require.ensure | components/common/select */ "components/common/select").then((function () {return resolve(__webpack_require__(/*! ../common/select.vue */ 152));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var xflSelect = function xflSelect() {__webpack_require__.e(/*! require.ensure | components/common/xfl-select/xfl-select */ "components/common/xfl-select/xfl-select").then((function () {return resolve(__webpack_require__(/*! ../common/xfl-select/xfl-select.vue */ 137));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 
@@ -265,23 +265,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var that = null;var _default =
 {
   components: {
     Select: Select, xflSelect: xflSelect },
@@ -294,8 +278,8 @@ __webpack_require__.r(__webpack_exports__);
       driverStr: [],
       carStr: [],
       carList: [],
-      selectValue: '',
-      selectDriver: '',
+      selectValue: '', //选中的车辆
+      selectDriver: '', //选中的司机
       form: (_form = {
         securityId: null, //安全员id
         brake: 0, //刹车情况   0合格  1不合格
@@ -319,16 +303,15 @@ __webpack_require__.r(__webpack_exports__);
       null), _form) };
 
 
-
-
-
   },
   onLoad: function onLoad(e) {
+    that = this;
     console.log(e);
     this.form.securityId = e.id;
     this.form.lineId = e.lineId;
     this.getDriverList();
     this.getCarList();
+    this.getMr();
   },
   watch: {
     driverStr: {
@@ -342,16 +325,19 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getMr: function getMr() {var _this = this;
       // 获取默认的司机和校车
-      this.$http.post('sLine/linesimpl', {
+      this.$http.post('sLine/linesimple', {
         lineId: this.form.lineId }).
       then(function (res) {
         if (res.code == 100) {
-          _this.selectDriver = res.info.driverSimple.name;
-          _this.selectValue = res.info.vehicleSimple.licenseId;
-          _this.form.driverId = res.info.driverSimple.id;
-          _this.form.driverName = _this.selectDriver;
-          _this.form.vehicleId = res.info.driverSimple.id;
-          _this.form.vehicleCard = _this.selectValue;
+          if (res.info.driverSimple.id) {
+            console.log("....12121");
+            _this.selectDriver = res.info.driverSimple.name;
+            _this.selectValue = res.info.vehicleSimple.licenseId;
+            _this.form.driverId = res.info.driverSimple.id;
+            _this.form.driverName = _this.selectDriver;
+            _this.form.vehicleId = res.info.driverSimple.id;
+            _this.form.vehicleCard = _this.selectValue;
+          }
         }
       });
     },

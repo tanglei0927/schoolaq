@@ -173,6 +173,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
@@ -183,8 +184,8 @@ var _default =
       '../../static/img/xxzx_012.png', //请假  2
       '../../static/img/xxzx_009.png', //回复  3
       '../../static/img/xxzx_011.png',
-      // '../../static/img/xxzx_011.png',
-      '../../static/img/xxzx_003.png' //学校  2
+      '../../static/img/xxzx_003.png', //系统群发  2
+      '../../static/img/xxzx_014.png' //学生乘车反馈 6
       ],
       userInfo: {},
       Msglist: [],

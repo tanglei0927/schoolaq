@@ -176,7 +176,7 @@
 									const src=item
 									console.log(JSON.stringify(src))									
 									uni.uploadFile({
-										url:that.$imgurl+'file/uploadOSS',
+										url:that.$imgurl+'file/uploadOSS',//uploadFile
 										header:{
 											 'Content-type':'multipart/form-data'
 										},

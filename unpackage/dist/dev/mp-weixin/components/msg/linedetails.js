@@ -213,6 +213,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
@@ -324,11 +325,8 @@ var _default =
       // if(data.)
       this.$http.post("sRidingRecord/presentation", data).then(function (res) {
         if (res.code == 100) {
-          // uni.showToast({
-          // 	icon:"success",
-          // 	title:"提交成功！"
-          // })
           _this4.show = false;
+          // this.
         } else {
           uni.showToast({
             icon: "none",

@@ -20,9 +20,10 @@
 				</view>
 			</view>
 			<view class="cl infos">
-				<text>发车时间：{{form.startTime}}</text>
-				<text>预计到达：{{form.endTime}}</text>
+				<text>发车时间：{{form.startTime?form.startTime:''}}</text>
+				<text>预计到达：{{form.endTime?form.endTime:''}}</text>
 				<view class="cl">
+					<!-- form.expectCount form.childrenVos.length -->
 					<text>{{!isAll?'全部人数':'车内人数'}}：{{!isAll?form.expectCount:form.count}}</text>
 					<switch checked="true" @change="switch2Change" />
 				</view>
@@ -52,7 +53,7 @@
 				<view>
 					姓名：{{childInfo.childrenName}}
 				</view>
-				<view>班级：{{childInfo.grade>9?(childInfo.grade==10?'高一':'高二'):childInfo.grade}}年级{{childInfo.clazz}}班</view>
+				<view>班级：{{childInfo.grade>9?(childInfo.grade==10?'高一':(childInfo.grade==11?'高二':(childInfo.grade==12?'幼托班':(childInfo.grade==13?'小班':(childInfo.grade==14?'中班':(childInfo.grade==15?'大班':'学前班')))))):childInfo.grade}}年级{{childInfo.clazz}}班</view>
 				<view>上车时间：{{childInfo.boardTime?childInfo.boardTime:''}}</view>
 				<view>下车时间：{{childInfo.takeTime?childInfo.takeTime:''}}</view>
 				<!-- <view>
@@ -63,7 +64,7 @@
 					<radio-group @change="radioChange" v-model="childInfo.status">
 						<label class="radio"><radio :value="0" :checked="childInfo.status==0?true:false" />没问题</label>
 						<label class="radio"><radio :value="1" :checked="childInfo.status==1?true:false" />打闹离座</label>
-						<label class="radio"><radio :value="2" :checked="childInfo.status==2?true:false" />危品携带</label><br />
+						<label class="radio"><radio :value="2" :checked="childInfo.status==2?true:false" />危险品携带</label><br />
 						<label class="radio"><radio :value="3" :checked="childInfo.status==3?true:false" />其他</label>
 					</radio-group>
 				</view>
@@ -187,11 +188,8 @@
 				// if(data.)
 				this.$http.post("sRidingRecord/presentation",data).then(res=>{
 					if(res.code==100){
-						// uni.showToast({
-						// 	icon:"success",
-						// 	title:"提交成功！"
-						// })
 						this.show=false
+						// this.
 					}else{
 						uni.showToast({
 							icon:"none",

@@ -18,7 +18,8 @@
 				</view>
 				<view class="textbox">
 					<h3>
-						<text>{{item.type==1?'家长投诉':(item.type==2?'请假':(item.type==3?'回复':(item.type==4?'':'系统群发')))}}</text>
+						<text>{{item.type==1?'家长投诉':(item.type==2?'请假':(item.type==3?'回复':(item.type==4?'安全员群发':(item.type==5?'系统群发':'学生乘车情况'))))}}</text>
+						<text v-if="item.type==1" class="statustxt">{{item.state==0?'未读':(item.state==3?'':(item.state==2?'未通过':(item.state==4?'审核中':'未回复')))}}</text>
 						<text>{{item.createTime}}</text>
 					</h3>
 					<text>{{item.content}}</text>
@@ -51,8 +52,8 @@
 					'../../static/img/xxzx_012.png',//请假  2
 					'../../static/img/xxzx_009.png',//回复  3
 					'../../static/img/xxzx_011.png',
-					// '../../static/img/xxzx_011.png',
-					'../../static/img/xxzx_003.png',//学校  2
+					'../../static/img/xxzx_003.png',//系统群发  2
+					'../../static/img/xxzx_014.png',//学生乘车反馈 6
 				],
 				userInfo:{},
 				Msglist:[],
@@ -186,14 +187,25 @@
 				line-height:60rpx;
 				h3{
 					width: 100%;
-					text:nth-child(2){
+					text:last-child{
 						float: right;
 						font-weight: normal;
 						color: #ccc;
 					}
+					.statustxt{
+						margin-left: 20rpx;
+						font-size: 12px;
+						color: red;
+					}
 				}
 				>text{
 					color: #646464;
+					display: block;
+					width: 100%;
+					height: 60rpx;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
 				}
 			}
 		}

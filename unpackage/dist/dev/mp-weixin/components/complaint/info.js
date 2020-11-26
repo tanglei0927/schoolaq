@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 53));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 53));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -212,16 +212,20 @@ var _default =
             _this.content = "";
           }
           var imgList = _this.details.photos;
+          console.log(_this.details);
           _this.photos = [];
-          if (imgList.length > 0) {
+          if (imgList && imgList.length > 0) {
             imgList.forEach(function (item, index) {
               _this.photos.push(_this.imgurl + 'file/downloadOss/' + item);
             });
           }
+          console.log(111111);
           var imgList2 = _this.details.newsVoReply.photos;
+          console.log(imgList2);
           _this.photos1 = [];
           if (imgList2.length > 0) {
             imgList2.forEach(function (item, index) {
+              // this.photos1.push(item)
               _this.photos1.push(_this.imgurl + 'file/downloadOss/' + item);
             });
           }
@@ -232,7 +236,7 @@ var _default =
     reply: function reply() {var _this2 = this;
       var url = "";
       var data = {};
-      if (this.details.state == 1 || this.details.state == 0) {
+      if (!this.details.newsVoReply) {
         // 回复
         url = "sMessage/addReply";
       } else {

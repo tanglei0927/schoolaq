@@ -112,24 +112,7 @@
 		<view class="cl">
 			<text class="txt">健康情况检查</text>
 			<Select :status="form.healthy"  :index="15" @changeVal="changeVal" />
-		</view>
-		<!-- <view class="healthbox cl" style="margin-top: 20rpx;">
-			<view class="tit">
-				防疫安全
-			</view>
-		</view>
-		<view class="cl">
-			<text class="txt">车辆是否消毒</text>
-			<Select :status="form.disinfect" :index="16" @changeVal="changeVal" />
-		</view>
-		<view class="cl">
-			<text class="txt">司机体温</text>
-			<Select :status="form.driverTemperature" :index="18" @changeVal="changeVal" />
-		</view>
-		<view class="cl">
-			<text class="txt">安全员体温</text>
-			<Select :status="form.securityTemperature" :index="17" @changeVal="changeVal" />
-		</view> -->
+		</view>		
 		<button type="primary" @click="openBus()">提交</button>
 		
 		<!-- 通知 -->
@@ -150,6 +133,7 @@
 <script>
 	import Select from "../common/select.vue"
 	import  xflSelect from"../common/xfl-select/xfl-select.vue"
+	let that=null
 	export default{
 		components:{
 			Select,xflSelect
@@ -162,8 +146,8 @@
 				driverStr:[],
 				carStr:[],
 				carList:[],
-				selectValue:'',
-				selectDriver:'',
+				selectValue:'',//选中的车辆
+				selectDriver:'',//选中的司机
 				form:{
 					securityId:null,//安全员id
 					brake:0,//刹车情况   0合格  1不合格
@@ -184,19 +168,18 @@
 					healthy:0,//健康状况
 					driverId:null,//司机id
 					driverName:null,//司机名称
-					lineId:null,//线路id
-					// disinfect:0,
-					// securityTemperature:0,
-					// driverTemperature:0,
+					lineId:null,//线路id				
 				}
 			}			
 		},
 		onLoad(e){
+			that=this
 			console.log(e)
 			this.form.securityId=e.id
 			this.form.lineId=e.lineId
 			this.getDriverList()
-			this.getCarList()
+			this.getCarList()	
+			this.getMr()
 		},
 		watch:{
 			driverStr:{
@@ -210,16 +193,19 @@
 		methods:{
 			getMr(){
 				// 获取默认的司机和校车
-				this.$http.post('sLine/linesimpl',{
+				this.$http.post('sLine/linesimple',{
 					lineId:this.form.lineId
 				}).then(res=>{
 					if(res.code==100){
-						this.selectDriver=res.info.driverSimple.name
-						this.selectValue=res.info.vehicleSimple.licenseId
-						this.form.driverId=res.info.driverSimple.id
-						this.form.driverName=this.selectDriver
-						this.form.vehicleId=res.info.driverSimple.id
-						this.form.vehicleCard=this.selectValue
+						if(res.info.driverSimple.id){
+							console.log("....12121")
+							this.selectDriver=res.info.driverSimple.name
+							this.selectValue=res.info.vehicleSimple.licenseId
+							this.form.driverId=res.info.driverSimple.id
+							this.form.driverName=this.selectDriver
+							this.form.vehicleId=res.info.driverSimple.id
+							this.form.vehicleCard=this.selectValue
+						}					
 					}
 				})
 			},
